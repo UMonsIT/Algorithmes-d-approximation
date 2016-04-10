@@ -1958,7 +1958,7 @@ l'algorithme de \textbf{Prim} est un algorithme exact polynomial permettant de l
 \STATE $S\leftarrow\{v\}$ où $v$ est un noeud arbitraire.
 \STATE $F \leftarrow \emptyset$
 \WHILE{$|S|<|V|$}
-\STATE $i,j \leftarrow arg\min_{i\not\in S,j\in S} C_{ij}$
+\STATE $i,j \leftarrow arg\min_{i\in S,j\not\in S} C_{ij}$
 \STATE $F\leftarrow F\cup \{(i,j)\}$
 \STATE $S\leftarrow S\cup \{j\}$
 \ENDWHILE

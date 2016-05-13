@@ -257,28 +257,38 @@ des algorithmes et heuristiques applicables à un grand nombre de problèmes).
 
 \subsection{Problèmes d'optimisation}
 
-\begin{de} \textbf{Problème d'optimisation} (discret) \\
-C'est un type de problème où il est demandé de trouver la solution optimale parmi les solutions réalisables.
+\begin{de} \textbf{Problème d'optimisation} (informel) \\
+C'est un type de problème où il est demandé de trouver la solution optimale
+parmi les solutions réalisables.
 \end{de}
 
 \begin{de} \textbf{Problème d'optimisation} (formel) \\
-Un problème d'optimisation $P$ est spécifié par $(I_P, SOL_P, m_P, goal_P)$ tels que :
+Un problème d'optimisation $P$ est spécifié par $(I_P, SOL_P, m_P, goal_P)$ tels
+que:
 \begin{itemize}
-	\item \term{$I_P$} est un ensemble d'instances de $P$; (par exemple, pour la coloration : tous les couples (graphe,entier)).
-	\item \term{$SOL_P$} est une fonction qui associe à chaque instance $x \in I_P$ un ensemble de solutions réalisables de
-	$x$ ($SOL_P(x)$) (par exemple, pour la coloration : ensemble des colorations légales possibles).
-\item \term{$m_P$} est une fonction de mesure ou fonction objectif définie pour les paires $(x,y)$ tq $x \in I_p$ et $y \in
-SOL_P(x)$. Pour toute paire $(x,y)$, $m_P(x,y)$ donne une valeur non-négative.
-\item \term{$goal_P \in {MIN,MAX}$} spécifiant si $P$ est une problème de minimisation ou de maximisation.
+	\item \term{$I_P$} est un ensemble d'instances de $P$.\\
+    $\rightarrow$ e.g. pour la coloration de graphe, tous les couples
+    (graphe,entier).
+	\item \term{$SOL_P$} est une fonction qui associe à chaque instance
+    $x \in I_P$ un ensemble de solutions réalisables de $x$ ($SOL_P(x)$).\\
+    $\rightarrow$ e.g. pour la coloration de graphe, ensemble des colorations
+    légales possibles.
+    \item \term{$m_P$} est une fonction de mesure ou fonction objectif définie
+    pour les paires $(x,y)$ tq $x \in I_p$ et $y \in SOL_P(x)$. Pour toute paire
+    $(x,y)$, $m_P(x,y)$ donne une valeur non-négative.
+    \item \term{$goal_P \in {MIN,MAX}$} spécifiant si $P$ est une problème de
+    minimisation ou de maximisation.
 \end{itemize}
-$\leadsto$ Quand le contexte est clair, on peut laisser tomber le $_P$ dans les notations.\\
+$\leadsto$ Quand le contexte est clair, on peut laisser tomber le $_P$ dans les
+notations.\\
 $\leadsto$ $SOL^*_P(x)$ est l'ensemble des solutions optimales de $x \in I_P$.
 \end{de}
 
 \begin{pblm} \textbf{MIN VERTEX\_COVER (\titre{VC})}
 \begin{itemize}
-\item[*]\textbf{\underline{Instance}} : graphe $G=(V,E)$,
-\item[*]\textbf{\underline{Solution}} : un ensemble de sommets $U \subseteq V$ tel que $\forall (v_i,v_j) \in E$, $v_i \in U$ ou
+\item[*]\textbf{\underline{Instance}}: graphe $G=(V,E)$,
+\item[*]\textbf{\underline{Solution}}: un ensemble de sommets $U \subseteq V$
+tel que $\forall (v_i,v_j) \in E$, $v_i \in U$ ou
 $v_j \in U$.
 \item[*]\textbf{\underline{Mesure}} : $|U|$
 \end{itemize}
@@ -306,9 +316,10 @@ Graphe complet à $n$ sommets, $K_n$.\\
     $ $ \\
 	$C = \{1,2,3\}$ est une solution réalisable. \\
 	$VC(S_n)=n-1\ \forall n \geq 2$ \\
-	Pour justifier cela, il suffit de voir que si on enlève toutes les arêtes concernant un sommet, on se retrouve à nouveau
-	avec un graphe complet, on peut ainsi itérer récursivement jusqu'au cas de base
-	$K_2$ où on sait que $VC(K_2) = 1$.
+	Pour justifier cela, il suffit de voir que si on enlève toutes les arêtes
+    concernant un sommet, on se retrouve à nouveau
+	avec un graphe complet, on peut ainsi itérer récursivement jusqu'au cas de
+    base $K_2$ où on sait que $VC(K_2) = 1$.
     \end{center}
 \end{figure}
 \end{exemple}
@@ -357,8 +368,9 @@ Graphe biparti complet à $n+m$ sommets, $K_{n,m}$.\\
 \begin{pblm} \textbf{MAX MATCHING (\titre{MM})}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} : graphe $G=(V,E)$,
-\item[*]\textbf{\underline{Solution}} : un ensemble d'arcs $F \subseteq E$ qui est un \textit{matching}, c'est-à-dire qu'il
-n'y a pas 2 arêtes \textit{incidentes} dans $F$ (extrémités communes),
+\item[*]\textbf{\underline{Solution}} : un ensemble d'arcs $F \subseteq E$ qui
+est un \textit{matching}, c'est-à-dire qu'il n'y a pas 2 arêtes
+\textit{incidentes} dans $F$ (extrémités communes).
 \item[*]\textbf{\underline{Mesure}} : $|F|$
 \end{itemize}
 \end{pblm}
@@ -372,33 +384,42 @@ n'y a pas 2 arêtes \textit{incidentes} dans $F$ (extrémités communes),
 \end{itemize}
 \end{exemple}
 
-\begin{rems} :
+\begin{rems}:
 \begin{itemize}
-\item Quand un graphe $G$ est biparti, $\titre{VC}(G) = \titre{MM}(G)$, sinon $\titre{MM}(G) \leq \titre{VC}(G)$ avec égalité
-ssi $G$ est \textbf{biparti}.
-\item \titre{VC} est \textbf{NP-Complet}, \titre{MM} ne l'est pas, c'est-à-dire qu'il existe un algorithme polynomial pour
-calculer \titre{MM}. On va donc pouvoir utiliser \titre{MM} pour approximer \titre{VC}.
+\item Quand un graphe $G$ est biparti, $\titre{VC}(G) = \titre{MM}(G)$, sinon
+$\titre{MM}(G) \leq \titre{VC}(G)$ avec égalité ssi $G$ est \textbf{biparti}.
+\item \titre{VC} est \textbf{NP-Complet}, \titre{MM} ne l'est pas, c'est-à-dire
+qu'il existe un algorithme polynomial pour calculer \titre{MM}. On va donc
+pouvoir utiliser \titre{MM} pour approximer \titre{VC}.
 \end{itemize}
 \end{rems}
 
 \subsection{Rappels et complexité des problèmes d'optimisation}
-
-L'intuition que l'on suit est que \textbf{VERTEX COVER} est beaucoup plus ``difficile'' que \textbf{MAXIMUM MATCHING} (pour lequel il
-existe des algorithmes polynomiaux).
+L'intuition que l'on suit est que \textbf{VERTEX COVER} est beaucoup plus
+``difficile'' que \textbf{MAXIMUM MATCHING} (pour lequel il existe des
+algorithmes polynomiaux).
 
 \subsubsection*{Rappels}
 
 \begin{itemize}
-\item Un algorithme pour un problème est dit \textbf{polynomial} si le nombre d'instructions pour résoudre ce problème peut être borné par
-un polynôme en la taille de l'entrée.
-\item Un \textbf{problème de décision} est un problème dont la sortie est soit "Yes" soit "No".
-\item La classe $\mathcal{P}$ contient les problèmes de décisions qui admettent des algorithmes polynomiaux pour les résoudre.
-\item La classe $\mathcal{NP}$ est l'ensemble des problèmes de décision qui peuvent être résolus en temps polynomial de manière non-
-déterministe \textit{(cf cours V.Bruyère)}.
-\item De manière moins formelle, la classe $\mathcal{NP}$ est l'ensemble des problèmes de décision tels que pour toute instance ``Yes''
-il y a une preuve ``facile'' (algorithme polynomial) pour montrer que la réponse est ``Yes''. \textit{(cf métaphore avec la musique : "je
-suis capable de vérifier qu'une musique est de la bonne musique mais je suis incapable de la composer moi-même")}
-\item Tout problème d'optimisation peut être exprimé sous la forme d'un problème de décision. \\$ $\\
+\item Un algorithme pour un problème est dit \textbf{polynomial} si le nombre
+d'instructions pour résoudre ce problème peut être borné par un polynôme en la
+taille de l'entrée.
+\item Un \textbf{problème de décision} est un problème dont la sortie est soit
+``Yes'' soit ``No''.
+\item La classe $\mathcal{P}$ contient les problèmes de décisions qui admettent
+des algorithmes polynomiaux pour les résoudre.
+\item La classe $\mathcal{NP}$ est l'ensemble des problèmes de décision qui
+peuvent être résolus en temps polynomial de manière non-déterministe
+\textit{(c.f. cours de Calculabilité et Complexité)}.
+\item De manière moins formelle, la classe $\mathcal{NP}$ est l'ensemble des
+problèmes de décision tels que pour toute instance ``Yes'' il y a une preuve
+``facile'' (algorithme polynomial) pour montrer que la réponse est ``Yes''
+\textit{(c.f. métaphore avec la musique : ``Je suis capable de vérifier qu'une
+musique est une bonne musique mais je suis incapable de la composer moi-même.'')
+}.
+\item Tout problème d'optimisation peut être exprimé sous la forme d'un problème
+de décision. \\$ $\\
 \begin{itemize}
 \item[$\rightarrow$] Exemple : \\
 \indent \hbox{\raisebox{0.4em}{\vrule depth 1pt height 0.4pt width 5cm}}
@@ -406,38 +427,48 @@ suis capable de vérifier qu'une musique est de la bonne musique mais je suis in
 \textbf{MIN VC-DECISION (\titre{VC-DEC})}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} : Graphe $G=(V,E)$, $k \in \N$
-\item[*]\textbf{\underline{Question}} : Existe-t-il une converture de $G$ de taille $\leq k$ ?
+\item[*]\textbf{\underline{Question}} : Existe-t-il une converture de $G$ de
+taille $\leq k$?
 \end{itemize}
 \indent \hbox{\raisebox{0.4em}{\vrule depth 1pt height 0.4pt width 5cm}}
 \end{pbm}
-\item[$\rightarrow$] De manière générale, si $goal=min(\blu{max})$, demander, pour un certain $k>0$, s'il existe une solution réalisable
-$y$ pour une instance $x$ telle que $m(x,y) \leq (\blu{\geq}) k$ ($m$ étant la mesure).
+\item[$\rightarrow$] De manière générale, si $goal=min(\blu{max})$, demander,
+pour un certain $k>0$, s'il existe une solution réalisable
+$y$ pour une instance $x$ telle que $m(x,y) \leq (\blu{\geq}) k$ ($m$ étant
+la mesure).
 \end{itemize}
 \end{itemize}
 
 \subsection*{Définitions}
-
 \begin{itemize}
-\item Un problème de décision $A$ se \textbf{réduit polynomialement} en $B$, noté $A\propto B$, s'il existe un algorithme polynomial
-permettant de transformer toute instance de $A$ en une instance de $B$ correspondante.
-\item Un problème de décision $B$ est dit \textbf{$\mathcal{NP}$-complet} si $B \in \mathcal{NP}$ et $\forall$ problème $A\ \mathcal{NP}$-
-complet, il existe une réduction polynomiale $A\propto B$. (un seul suffit en fait)
-\item Une \textbf{preuve par réduction} que $A$ est $\mathcal{NP}$-complet se fait en 2 étapes :
+\item Un problème de décision $A$ se \textbf{réduit polynomialement} en $B$,
+noté $A\propto B$, s'il existe un algorithme polynomial permettant de
+transformer toute instance de $A$ en une instance de $B$ correspondante.
+\item Un problème de décision $B$ est dit \textbf{$\mathcal{NP}$-complet} si
+$B \in \mathcal{NP}$ et $\forall$ problème $A\ \mathcal{NP}$-complet, il existe
+une réduction polynomiale $A\propto B$.
+\item Une \textbf{preuve par réduction} que $A$ est $\mathcal{NP}$-complet se
+fait en 2 étapes :
 \begin{enumerate}
-\item prouver que $A$ est dans $\mathcal{NP}$ \textit{(il faut donc prouver que la vérification est polynomiale)}
-\item $\exists$ un problème $B$ tel que $B\propto A$ pour un problème $B$ connu comme étant $\mathcal{NP}$-complet.
+\item Prouver que $A$ est dans $\mathcal{NP}$ \textit{(il faut donc prouver que
+la vérification est polynomiale)};
+\item $\exists$ un problème $B$ tel que $B\propto A$ pour un problème $B$ connu
+comme étant $\mathcal{NP}$-complet.
 \end{enumerate}
-\item Soit un problème de décision ou d'optimisation $A$. On dit qu'un algorithme possède $A$ comme \textbf{oracle} si on suppose que
-l'algorithme peut résoudre une instance de $A$ en une seule instruction ($O(1)$).
-\item Un problème $A$ est \textbf{$\mathcal{NP}$-difficile} \textit{($\mathcal{NP}$-hard)} s'il existe un algorithme polynomial pour un
-problème $\mathcal{NP}$-complet $B$ quand cet algorithme possède $A$ comme oracle. \\ \textit{(Intuition : Si $A$ était facile, alors $B$
-le serait aussi})\\
-\indent$\qquad$ Exemple : \textbf{VC} est $\mathcal{NP}$-difficile car si on connait \textbf{VC(G)} en temps constant, alors le problème
+\item Soit un problème de décision ou d'optimisation $A$. On dit qu'un
+algorithme possède $A$ comme \textbf{oracle} si on suppose que l'algorithme peut
+résoudre une instance de $A$ en une seule instruction ($O(1)$).
+\item Un problème $A$ est \textbf{$\mathcal{NP}$-difficile}
+\textit{($\mathcal{NP}$-hard)} s'il existe un algorithme polynomial pour un
+problème $\mathcal{NP}$-complet $B$ quand cet algorithme possède $A$ comme
+oracle. \\
+\textit{(Intuition : Si $A$ était facile, alors $B$ le serait aussi})\\
+\indent$\qquad$ Exemple : \textbf{VC} est $\mathcal{NP}$-difficile car si on
+connait \textbf{VC(G)} en temps constant, alors le problème
 \indent$\qquad\qquad\qquad\quad$\textbf{VC-décision} devient polynomial.
 \end{itemize}
 
 \subsection{Algorithmes d'approximation : qu'est-ce ? Pourquoi ?}
-
 \begin{quote}\begin{center}
 \textit{\quotecolor{{\Huge ``}}
 \begin{Large}

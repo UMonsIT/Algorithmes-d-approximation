@@ -478,52 +478,65 @@ connait \textbf{VC(G)} en temps constant, alors le problème
 \end{center}\end{quote}
 
 \subsubsection*{Définition}
-Un \textbf{algorithme d'$\alpha$-approximation} pour un problème d'optimisation est un algorithme polynomial qui \indent pour toutes les
-instances du problème produit une solution dont la valeur est proche de la solution optimale \indent à un facteur $\alpha$ près.
+Un \textbf{algorithme d'$\alpha$-approximation} pour un problème d'optimisation
+est un algorithme polynomial qui \indent pour toutes les instances du problème
+produit une solution dont la valeur est proche de la solution optimale \indent
+à un facteur $\alpha$ près.
 
 \subsubsection*{Remarques}
 \begin{itemize}
 \item On va suivre la convention suivante :
 \begin{itemize}
-\item[*]$\boxed{\alpha > 1}$ si \textbf{MIN}, par exemple, un algorithme de $2$-approximation implique que la
-	  solution de \\l'algorithme est le double de la solution optimale dans le pire des cas,
-\item[*]$\boxed{\alpha < 1}$ si \textbf{MAX}, par exemple, un algorithme de $\frac{1}{2}$-approximation implique que la
-	  solution de \\l'algorithme est la moitié de la solution optimale dans le pire des cas.
+\item[*]$\boxed{\alpha > 1}$ si \textbf{MIN}, par exemple, un algorithme de
+$2$-approximation implique que la solution de l'algorithme est le double de
+la solution optimale dans le pire des cas,
+\item[*]$\boxed{\alpha < 1}$ si \textbf{MAX}, par exemple, un algorithme de
+$\frac{1}{2}$-approximation implique que la solution de l'algorithme est la
+moitié de la solution optimale dans le pire des cas.
 \end{itemize}
-\item $\alpha$ est la \textbf{garantie de performance}, aussi appelé \textbf{facteur} ou \textbf{ratio d'approximation}.\\
-	  Ce facteur n'est pas toujours constant, il peut dépendre de la taille de l'entrée.
+\item $\alpha$ est la \textbf{garantie de performance}, aussi appelé
+\textbf{facteur} ou \textbf{ratio d'approximation}.\\
+Ce facteur n'est pas toujours constant, il peut dépendre de la taille de
+l'entrée.
 \end{itemize}
 
 \subsubsection*{Pourquoi ?}
-
 Nous donnons ici 6 raisons :
 \begin{enumerate}
-\item il y avait un certain besoin d'algorithmes pour obtenir des solutions rapidement aux problèmes d'optimisation,
-\item souvent la conception d'algorithmes se base sur des modèles idéalisés mais peuvent donner des idées pour les "vrais" problèmes,
-\item base mathématique rigoureuse pour étudier les heuristiques,
-\newpage
+\item il y avait un certain besoin d'algorithmes pour obtenir des solutions
+rapidement aux problèmes d'optimisation;
+\item souvent la conception d'algorithmes se base sur des modèles idéalisés mais
+peuvent donner des idées pour les "vrais"problèmes;
+\item base mathématique rigoureuse pour étudier les heuristiques;
 \item donne des garanties :
 \begin{itemize}
 \item à priori \textit{(facteur $\alpha$)},
 \item à fortiori dans certains cas, \textit{(voir plus loin)};
 \end{itemize}
-\item donne un moyen de mesurer le niveau de difficultés des problèmes d'optimisation,
+\item donne un moyen de mesurer le niveau de difficultés des problèmes
+d'optimisation;
 \item c'est ``fun''.
 \end{enumerate}
 
 \subsubsection{Définitions}
 
 \begin{itemize}
-\item \textbf{Un schéma d'approximation en temps polynomial} \textit{(polynomial time approximation scheme} (\textbf{PTAS})) est une
-famille d'algorithmes $A_\epsilon$, où il y a un algorithme pour tout $\epsilon > 0$ tel que $A_\epsilon$ est un algorithme de :
+\item \textbf{Un schéma d'approximation en temps polynomial} \textit{(polynomial
+time approximation scheme} (\textbf{PTAS})) est une famille d'algorithmes
+$A_\epsilon$, où il y a un algorithme pour tout $\epsilon > 0$ tel que
+$A_\epsilon$ est un algorithme de :
 \begin{itemize}
-\item[*] \textit{($1+\epsilon$)-approximation} si c'est une \textbf{MIN}imisation,
-\item[*] \textit{($1-\epsilon$)-approximation} si c'est une \textbf{MAX}imisation.
+\item[*] \textit{($1+\epsilon$)-approximation} si c'est une
+\textbf{MIN}imisation,
+\item[*] \textit{($1-\epsilon$)-approximation} si c'est une
+\textbf{MAX}imisation.
 \end{itemize}
-$\qquad \rightarrow$ Exemple : problème du sac à dos et version euclidienne du TSP (voyageur de commerce).
+$\qquad \rightarrow$ Exemple : problème du sac à dos et version euclidienne du
+TSP (voyageur de commerce).
 
-\item Il existe une classe (\textbf{MAX SNP}) de problèmes tel que :
-\begin{thm} Pour tout problème \textit{$MAX SNP$-difficile}, il n'y a pas de PTAS. (sauf si $P = NP$)
+\item Il existe une classe (\textbf{MAX SNP}) de problèmes telle que :
+\begin{thm} Pour tout problème \textit{$MAX SNP$-difficile}, il n'y a pas de
+PTAS (sauf si $P = NP$).
 \end{thm}
 
 \item Il existe d'autres problèmes encore plus difficile. Par exemple :\\
@@ -531,30 +544,37 @@ $\qquad \rightarrow$ Exemple : problème du sac à dos et version euclidienne du
 \begin{pbm} \textbf{MAX CLIQUE}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} : graphe $G=(V,E)$,
-\item[*]\textbf{\underline{Solution}} : un sous-ensemble de sommets $S \subseteq V$ tel que $S$ est une \textbf{clique} \textit{(sous-
-graphe complet)},
+\item[*]\textbf{\underline{Solution}} : un sous-ensemble de sommets $S
+\subseteq V$ tel que $S$ est une \textbf{clique} \textit{(sous-graphe complet)},
 \item[*]\textbf{\underline{Mesure}} : $|S|$
 \end{itemize}
 \indent \hbox{\raisebox{0.4em}{\vrule depth 1pt height 0.4pt width 5cm}}
 \end{pbm}
 
-\begin{thm}Soit $n = |V|$ et $0 < \epsilon < 1$ n'importe quelle constante, alors il n'existe pas d'algorithme d'approximation avec un
-facteur $O(n^{\epsilon-1})$ pour \textbf{MAX CLIQUE} \textit{(sauf si $P = NP$)}.\end{thm}
+\begin{thm}Soit $n = |V|$ et $0 < \epsilon < 1$ n'importe quelle constante,
+alors il n'existe pas d'algorithme d'approximation avec un facteur
+$O(n^{\epsilon-1})$ pour \textbf{MAX CLIQUE} \textit{(sauf si $P = NP$)}.
+\end{thm}
 
 \textbf{\underline{Commentaires}} :
 \begin{enumerate}
 \item si $\epsilon = 1$, $\exists$ un algorithme d'approximation en $O(1)$,
-\item si $\epsilon = 0$, $\exists$ un algorithme d'approximation en $O(\frac{1}{n})$,
+\item si $\epsilon = 0$, $\exists$ un algorithme d'approximation en
+$O(\frac{1}{n})$,
 \begin{itemize}
-\item[$\rightarrow$] $OPT = n$ et $SOL = 1$ $\Rightarrow$ $\frac{SOL}{OPT} = \frac{1}{n}$
-\item[$\rightarrow$] \textbf{Algorithme idiot et très mauvais} mais \rouge{\textbf{on ne peut pas faire mieux que lui !}} \\
-\textit{Tout algorithme serait donc aussi bon que de prendre un seul sommet, on ne peut pas améliorer ce facteur d'approximation.}
+\item[$\rightarrow$] $OPT = n$ et $SOL = 1$ $\Rightarrow$ $\frac{SOL}{OPT} =
+\frac{1}{n}$
+\item[$\rightarrow$] \textbf{Algorithme idiot et très mauvais} mais
+\rouge{\textbf{on ne peut pas faire mieux que lui !}} \\
+\textit{Tout algorithme serait donc aussi bon que de prendre un seul sommet,
+on ne peut pas améliorer ce facteur d'approximation.}
 \end{itemize}
 \end{enumerate}
 \end{itemize}
 \vspace{25em}
 \begin{flushright}
-$\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exochap1}.\end{large}
+$\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exochap1}.
+\end{large}
 \end{flushright}
 
 \section{Set Cover et survol des techniques}

@@ -579,22 +579,22 @@ $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exochap1}.
 
 \section{Set Cover et survol des techniques}
 
-Ce problème possède diverses applications dans la vie de tous les jours. Comme exemple nous citons les antivirus \textit{``boot
-sector''}. On considère que chaque point est un virus \textit{boot sector} connu (ils possèdent approximativement $21 000$ séquences de
-$3$ octets très particulières à ce type de virus qu'ils ont trouvé et ils définissent pour chaque séquence un sous-ensemble contenant les
-virus qui contiennent ces octets).\\
+Ce problème possède diverses applications dans la vie de tous les jours. Par
+exemple, les antivirus ou encore les ```\textit{Houses of Graphs}''.\\
 
 \begin{pblm} \textbf{MIN SET\_COVER (\titre{SC})}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} :
 	\begin{itemize}
 	\item Un ensemble $E = \{e_1, e_2, \ldots, e_n \}$ de $n$ éléments,
-	\item des sous-ensembles $S_1$, $S_2$, $\ldots$, $S_m$ où chaque $S_j\subseteq E$,
+	\item des sous-ensembles $S_1$, $S_2$, $\ldots$, $S_m$ où chaque
+    $S_j\subseteq E$,
 	\item un poids non-négatif $w_j \geq 0$ pour chaque sous-ensemble $S_j$.
 	\end{itemize}
-\item[*]\textbf{\underline{Solution}} : Une collection $I$ de sous-ensembles qui couvrent $E$. \\ C'est-à-dire $I\subseteq \{1,2,
-\ldots,n\}$ telle que $\bigcup_{j\in I}{S_j} = E$.
-\item[*]\textbf{\underline{Mesure}} : $\sum_{j\in I} w_j$
+\item[*]\textbf{\underline{Solution}} : Une collection $I$ de sous-ensembles qui
+couvrent $E$. \\ C'est-à-dire $I\subseteq \{1,2,\ldots,n\}$ telle que
+$\bigcup\limits_{j\in I}{S_j} = E$.
+\item[*]\textbf{\underline{Mesure}} : $\sum\limits_{j\in I} w_j$
 \end{itemize}
 \end{pblm}
 
@@ -606,7 +606,8 @@ virus qui contiennent ces octets).\\
 \end{figure}
 
 $I_{OPT} = \{S_3,S_4,S_5\}$. \\
-\indent Et si $w_j = 1, \forall j$ \textit{(version non-pondérée du problème)}, alors $I_{OPT} = \{S_1,S_2\}$.
+\indent Et si $w_j = 1, \forall j$ \textit{(version non-pondérée du problème)},
+alors $I_{OPT} = \{S_1,S_2\}$.
 
 \subsection{Programmation linéaire et Set Cover}
 

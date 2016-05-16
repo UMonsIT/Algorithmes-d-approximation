@@ -580,7 +580,7 @@ $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exochap1}.
 \section{Set Cover et survol des techniques}
 
 Ce problème possède diverses applications dans la vie de tous les jours. Par
-exemple, les antivirus ou encore les ```\textit{Houses of Graphs}''.\\
+exemple, les antivirus ou encore les ``\textit{Houses of Graphs}''.\\
 
 \begin{pblm} \textbf{MIN SET\_COVER (\titre{SC})}
 \begin{itemize}
@@ -618,25 +618,32 @@ Un programme linéaire (\titre{\textbf{PL}}) est spécifié par :
 \item des contraintes sous la forme d'inégalités/égalités linéaires,
 \item une fonction objectif linéaire.
 \end{enumerate}
-Un \textbf{\titre{PL} en nombres entiers (\titre{IP})} impose une contrainte d'intégralité supplémentaire sur certaines variables.\\
-Un \textbf{\titre{PL} 0-1} impose une contrainte supplémentaire de valeur booléenne sur certaines variables.\\
+Un \textbf{\titre{PL} en nombres entiers (\titre{IP})} impose une contrainte
+d'intégralité supplémentaire sur certaines variables.\\
+Un \textbf{\titre{PL} 0-1} impose une contrainte supplémentaire de valeur
+booléenne sur certaines variables.\\
 \end{de}
+
 \begin{propriete}
-Un \textbf{\titre{PL}} où toutes les variables sont continues peut être résolus en temps polynomial (pas via le simplexe, via la méthode
-des points intérieurs ou l'algorithme ellipsoïdale par exemple (il en existe d'autres)).\\
-\indent $\Rightarrow$ \textbf{Ils appartiennent donc à $\mathcal{P}.$} Un \textbf{\titre{IP}} \textit{(Integer Programming)} par contre,
+Un \textbf{\titre{PL}} où toutes les variables sont continues peut être résolus
+en temps polynomial (non pas via le simplexe mais via la méthode des points
+intérieurs ou via l'algorithme ellipsoïdale par exemple (il en existe
+d'autres)).\\
+\indent $\Rightarrow$ \textbf{Ils appartiennent donc à $\mathcal{P}$}. Un
+\textbf{\titre{IP}} \textit{(Integer Programming)} par contre,
 en général, est $\mathcal{NP}$-\textit{difficile}.
 \end{propriete}
 
 \begin{propriete}
 Tout \textbf{\titre{IP}} peut être \textbf{relaxé}. \\
 Par exemple : $x_j \in \{0,1\} \Rightarrow_{\text{relaxation}} x_j \geq 0$\\
-(le $x_j \leq 1$ n'est pas utile car dès que c'est plus $0$, on sait qu'elle n'est plus à la valeur booléenne $0$)
+(le $x_j \leq 1$ n'est pas utile car dès que c'est plus $0$, on sait qu'elle
+n'est plus à la valeur booléenne $0$).
 \end{propriete}
 $ $\\$ $\\$ $\\$ $\\$ $\\$ $\\
 
-Grâce à cette idée de relaxation on peut dégager un algorithme que l'on pense est d'approximation pour résoudre un problème
-\textbf{IP(*)} :
+Grâce à cette idée de relaxation on peut dégager un algorithme qui semble être
+un algorithme d'approximation pour résoudre un problème \textbf{IP(*)} :
 \begin{algorithm}[h!]
 \caption{RelaxationApprox}
 \begin{algorithmic}[1]
@@ -645,14 +652,20 @@ Grâce à cette idée de relaxation on peut dégager un algorithme que l'on pens
 \end{algorithmic}
 \end{algorithm}
 
-2 questions se posent cela dit, \textit{``comment arrondir ?''} et \textit{``quel est le facteur $\alpha$ ?''}.\\
-On sait que cet algorithme est polynomial si l'algorithme utilisé pour arrondir est dans $\mathcal{P}$. \\
-On sait également que \textbf{LP(**)} est une relaxation de \textbf{IP(*)}, ce qui signifie que :
+Deux questions se posent alors: \textit{``Comment arrondir ?''} et
+\textit{``Quel est le facteur $\alpha$ ?''}.\\
+On sait que cet algorithme est polynomial si l'algorithme utilisé pour arrondir
+est dans $\mathcal{P}$. \\
+On sait également que \textbf{LP(**)} est une relaxation de \textbf{IP(*)}, ce
+qui signifie que :
 \begin{itemize}
-\item toute solution réalisable d'\textbf{IP(*)} est une solution réalisable de \textbf{LP(**)},
-\item la valeur de toute solution réalisable dans \textbf{IP(*)} sera égale à la même valeur dans \textbf{LP(**)}.
+\item toute solution réalisable d'\textbf{IP(*)} est une solution réalisable de
+\textbf{LP(**)},
+\item la valeur de toute solution réalisable dans \textbf{IP(*)} sera égale à la
+même valeur dans \textbf{LP(**)}.
 \end{itemize}
-$\Rightarrow$ \textbf{LP(**)} a plus de solutions réalisables que \textbf{IP(*)}. \\
+$\Rightarrow$ \textbf{LP(**)} a plus de solutions réalisables que
+\textbf{IP(*)}.\\
 En d'autres mots, dans le cas d'une \textbf{MIN}imisation, si :
 \begin{itemize}
 \item $Z^*_{LP}$ est la solution optimale pour le \textbf{LP}
@@ -714,21 +727,26 @@ $\max\ x_1+x_2$ \\
 \end{exemple}
 
 $\rightarrow Z^*_{LP} = (\frac{15}{7},\frac{8}{7}) \simeq (2,1) = Z^*_{IP}$ \\
-\indent \textit{(on a de la chance on trouve la solution optimale via notre algo polynomial).}
+\indent \textit{(on a de la chance on trouve la solution optimale via notre
+algorithme polynomial).}
 
 \subsubsection*{Solution pour l'arrondi \titre{SC}}
 
-Posons $f$ comme le nombre maximum de sous-ensembles dans lesquels n'importe quel élément apparait,
-$$f = \max_{i=1,\ldots,n}{(f_i)}\text{ où }f_i = \left| \{j : e_i \in S_j \} \right|$$
+Posons $f$ comme le nombre maximum de sous-ensembles dans lesquels n'importe
+quel élément apparaît,
+$$f = \max_{i=1,\ldots,n}{(f_i)}\text{ où }f_i = \left| \{j : e_i \in S_j \}
+\right|$$
 
-Soit $x^* = (x_1^*, x_2^*, .. x_n^*)$ la solution optimale du \textbf{LP}, on va arrondir en incluant $S_j$ dans la solution si et
-seulement si $x_j^* \geq \frac{1}{f}$.
+Soit $x^* = (x_1^*, x_2^*, .. x_n^*)$ la solution optimale du \textbf{LP},
+on va arrondir en incluant $S_j$ dans la solution si et seulement si
+$x_j^* \geq \frac{1}{f}$.
 
 \begin{thm}
 Cette manière de procéder est un algorithme de $f$-\textit{approximation}.
 \end{thm}
 \begin{corollaire}
-L'adaptation de cet algorithme donne un algorithme de $2$-approximation pour le \titre{VC}.
+L'adaptation de cet algorithme donne un algorithme de $2$-approximation pour le
+\titre{VC}.
 \end{corollaire}
 
 \vspace{5em}
@@ -743,17 +761,20 @@ on inclut $S_j$ dans la solution ``arrondie'' ssi $x^*_j \geq \frac{1}{f}$
 \end{algorithmic}
 \end{algorithm}
 
-où $f = \max_{i=1,...,n} (f_i)$ où $f_i = |\{j:e_i \in S_j\}|$ et $I =$ ensemble des indices sélectionnés.
+où $f = \max_{i=1,...,n} (f_i)$ où $f_i = |\{j:e_i \in S_j\}|$ et $I =$ ensemble
+des indices sélectionnés.
 
 \begin{lemme}
 La collection des $S_j$, $j \in I$ est une couverture.
 \begin{proof}
 On va montrer que tout $e_i$ est couvert.\\
-Comme $x^*$ \textit{(la solution optimale du \textbf{LP})} est une solution réalisable, on a :
+Comme $x^*$ \textit{(la solution optimale du \textbf{LP})} est une solution
+réalisable, on a :
 $$\sum_{j : e_i\in S_j} (x^*_j) \geq 1\text{ pour un certain } e_i.$$
 \begin{center}\textit{(une contrainte pour un élément donné)}\end{center}
 Par définition, $f_i \leq f$, on a donc au maximum $f$ termes dans la somme. \\
-Donc, il y a au moins un terme $x^*_j$ qui doit être $\geq \frac{1}{f}$ car si ils sont tous $<\frac{1}{f}$, la somme n'est pas $\geq 1$.
+Donc, il y a au moins un terme $x^*_j$ qui doit être $\geq \frac{1}{f}$ car si
+ils sont tous $<\frac{1}{f}$, la somme n'est pas $\geq 1$.\\
 $\Rightarrow$ Il existe un $j$ tel que $e_i \in S_j$ et $x^*_j \geq \frac{1}{f}$.
 En conséquence, $j \in I$ par l'algorithme et $e_i$ est couvert.
 \cqfd
@@ -761,33 +782,39 @@ En conséquence, $j \in I$ par l'algorithme et $e_i$ est couvert.
 \end{lemme}
 
 \begin{thm} Det\_Rounding\_SC est un algorithme de $f$-\textit{approximation} pour \textbf{\titre{SC}}.
-\begin{proof}$\searrow$\\
-\begin{enumerate}
-\item[a)] l'algorithme est clairement polynomial,
-\item[b)] prouvons que la solution approché est égale à $f$ fois la solution optimale, càd :
+\begin{proof}
+On voit que l'algorithme est polynomial.\\
+Prouvons que la solution approché est égale à $f$ fois la solution optimale,
+càd:
 $$ \sum_{j\in I} w_j = APP \leq f * OPT  $$
 Par construction, $1 \leq f*x^*_j,\ \forall j \in I$. \textbf{(**)}\\
 Ensuite,
 \begin{eqnarray}
 \sum_{j\in I} (w_j) & \leq & \sum_{j=1}^m (w_j.1) \\
-				    & \leq & \sum_{j=1}^m w_j . f . x^*_j \text{ (par \textbf{(**)})} \\
+				    & \leq & \sum_{j=1}^m w_j . f . x^*_j
+                    \text{ (par \textbf{(**)})} \\
 				    &   =  & f \sum_{j=1}^m w_j . x^*_j \\
-					&   =  & \text{($f$  * valeur de la fonction objective pour la solution optimale du LP)} \\
+					&   =  & \text{($f$  * valeur de la fonction objective pour
+                    la solution optimale du LP)} \\
 					&   =  & f * Z_{LP}^* \\
 					& \leq & f*OPT
 \end{eqnarray}
-\end{enumerate}
 \cqfd
 \end{proof}
 \end{thm}
 
-Le facteur $f$ ainsi calculé est une \textbf{garantie à priori}, c'est-à-dire qu'avant même de lancer l'algorithme, on est sûr que ce
-facteur d'approximation sera vérifié. Cependant, l'algorithme \textbf{Det\_Rounding\_SC} permet d'avoir également une \textbf{garanti à
-fortiori}, c'est-à-dire une garantie que l'on a lorsque on a commencé à exécuter l'algorithme (dans ce cas-ci, lorsque l'on a la réponse
-au problème relaxé). En effet, prenons $\alpha = \frac{\sum_{j\in I}(w_j)}{Z^*_{LP}}$, de la preuve précédente on a que $\sum_{j\in I}
-(w_j) \leq f.Z^*_{LP}$ et donc $\alpha \leq f$ (dans certain cas, $\alpha$ peut être beaucoup plus petit que $f$). On a également
-$\frac{APP}{OPT}\leq \alpha$, ce qui fait d'$\alpha$ un meilleur facteur d'approximation que $f$ bien qu'il ne soit calculable qu'à
-partir de la solution obtenue via la résolution du problème relaxé ($Z^*_{LP}$).
+Le facteur $f$ ainsi calculé est une \textbf{garantie à priori}, c'est-à-dire
+qu'avant même de lancer l'algorithme, on est sûr que ce facteur d'approximation
+sera vérifié. Cependant, l'algorithme \textbf{Det\_Rounding\_SC} permet d'avoir
+également une \textbf{garanti à fortiori}, c'est-à-dire une garantie que l'on a
+lorsque on a commencé à exécuter l'algorithme (dans ce cas-ci, lorsque l'on a
+la réponse au problème relaxé). En effet, prenons
+$\alpha = \frac{\sum_{j\in I}(w_j)}{Z^*_{LP}}$, de la preuve précédente on a que
+$\sum_{j\in I}(w_j) \leq f.Z^*_{LP}$ et donc $\alpha \leq f$ (dans certain cas,
+$\alpha$ peut être beaucoup plus petit que $f$). On a également
+$\frac{APP}{OPT}\leq \alpha$, ce qui fait d'$\alpha$ un meilleur facteur
+d'approximation que $f$ bien qu'il ne soit calculable qu'à partir de la solution
+obtenue via la résolution du problème relaxé ($Z^*_{LP}$).
 
 \vspace{4em}
 
@@ -803,57 +830,73 @@ $5 \leq 2*3=6$
 \end{exemple}
 
 \begin{corollaire}
-L'algorithme \textbf{Det\_Rounding\_SC} peut être adapté au \textbf{\titre{VC}} pour donner algo de 2-approximation (vu que $f = 2$ pour
+L'algorithme \textbf{Det\_Rounding\_SC} peut être adapté au \textbf{\titre{VC}}
+pour donner algorithme de 2-approximation (vu que $f = 2$ pour
 \textbf{\titre{VC}}).
 \end{corollaire}
 
 \subsection{Primal $\leftrightarrow$ Dual}
 
 \begin{de}[Problème dual]
-Pour tout \textbf{\titre{LP}}, il existe un autre \textbf{\titre{LP}} appelé son \textbf{dual} qui possède des propriétés interessantes.
+Pour tout \textbf{\titre{LP}}, il existe un autre \textbf{\titre{LP}} appelé son
+\textbf{dual} qui possède des propriétés intéressantes.
 \end{de}
 
-\begin{exemple}Voir feuilles des résultats obtenus avec \textbf{CPLEX}.\end{exemple}
+\begin{exemple}
+Voir feuilles des résultats obtenus avec \textbf{CPLEX}.
+\end{exemple}
 
-L'intuition du \textbf{dual} est que l'on se place à la place de l'\textit{entrepreneur} tandis que le \textbf{primal} correspond au
-point de vue du \textit{client}. \\
+L'intuition du \textbf{dual} est que l'on se met à la place de
+l'\textit{entrepreneur} tandis que le \textbf{primal} correspond au point de vue
+du \textit{client}. \\
 
-Pour le \textbf{\titre{SC}}, chaque élément $e_i$ est \textit{``facturé''} d'un prix $y_i \geq 0$ à payer pour le couvrir. Pour que les
-prix soient raisonnables,
+Pour le \textbf{\titre{SC}}, chaque élément $e_i$ est \textit{``facturé''} d'un
+prix $y_i \geq 0$ à payer pour le couvrir. Pour que les prix soient
+raisonnables,
 $$\sum_{i:e_i\in S_j} (y_i) \leq w_j\ (\forall j \in \{1,...,m\})$$
-c'est-à-dire, en français que l'on n'accepte pas que la somme des prix à payer pour couvrir les éléments d'un ensemble $S_j$ soit
-supérieur au poids de cet ensemble. Le problème \textbf{dual} est défini comme suit :
+c'est-à-dire, en français que l'on n'accepte pas que la somme des prix à payer
+pour couvrir les éléments d'un ensemble $S_j$ soit supérieur au poids de cet
+ensemble. Le problème \textbf{dual} est défini comme suit :\\
 
 $\max\ \sum_{i=1}^n y_i$ \\
-\indent $\text{s.l.c. } \sum_{i:e_i \in S_j}(y_i) \leq w_j\, (\forall j \in \{1,\ldots ,m\})$ \\
-\indent $\qquad\ y_i \geq 0\, (\forall i \in \{1,\ldots ,n\})$
+\indent s.l.c.
+\begin{itemize}
+\item $\sum_{i:e_i \in S_j}(y_i) \leq w_j\, (\forall j \in \{1,\ldots ,m\})$ \\
+\item $\qquad\ y_i \geq 0\, (\forall i \in \{1,\ldots ,n\})$
+\end{itemize}
 
 \subsubsection{Remarques et propriétés du dual}
 
 \begin{rems}
 \begin{itemize}
-\item On appelle le \textbf{\titre{LP}} ``original'' le \textbf{problème primal}.
+\item On appelle le \textbf{\titre{LP}} ``original'' le
+\textbf{problème primal}.
 \item Le \textbf{dual} du \textbf{dual} est le \textbf{primal}.
-\item A chaque variable du \textbf{dual} correspond une contrainte du \textbf{primal}.
-\item A chaque variable du \textbf{primal} correspond une contrainte du \textbf{dual}.
+\item A chaque variable du \textbf{dual} correspond une contrainte du
+\textbf{primal}.
+\item A chaque variable du \textbf{primal} correspond une contrainte du
+\textbf{dual}.
 \end{itemize}
 \end{rems}
 
-\begin{thm}[\titre{Dualité faible}] Soit $x$ une solution réalisable du primal (\textbf{MIN}) et $y$ une solution réalisable du dual
-(\textbf{$\Rightarrow$ MAX}), alors la valeur de $y \leq$ la valeur de $x$ (et $\geq$ si le primal est une \textbf{MAX} et le dual
-une \textbf{MIN}).
+\begin{thm}[\titre{Dualité faible}] Soit $x$ une solution réalisable du primal
+(\textbf{MIN}) et $y$ une solution réalisable du dual (\textbf{$\Rightarrow$
+MAX}), alors la valeur de $y \leq$ la valeur de $x$ (et $\geq$ si le primal est
+une \textbf{MAX} et le dual une \textbf{MIN}).
 \end{thm}
 
 \begin{exemple}[Set Cover]
 $$\sum_{i=1}^n(y_i) \leq \sum^m_{j=1} (x_j.w_j)$$
 \end{exemple}
 
-\begin{thm}[\titre{Dualité forte}] S'il existe des solutions qui sont réalisables pour le primal \textbf{ET} pour le dual alors
-\textbf{les valeurs optimales de ces 2 problèmes sont égales}.
+\begin{thm}[\titre{Dualité forte}] S'il existe des solutions qui sont
+réalisables pour le primal \textbf{ET} pour le dual alors \textbf{les valeurs
+optimales de ces 2 problèmes sont égales}.
 \end{thm}
 
 \begin{exemple}[Set Cover]
-$x^*$ et $y^*$ sont des solutions optimales pour respectivement le \textbf{primal} et le \textbf{dual} alors :
+$x^*$ et $y^*$ sont des solutions optimales pour respectivement le
+\textbf{primal} et le \textbf{dual} alors :
 $$ \sum_{i=1}^n y^*_i = \sum_{j=1}^m x^*_j.w_j$$
 \end{exemple}
 
@@ -862,37 +905,45 @@ $$ \sum_{i=1}^n y^*_i = \sum_{j=1}^m x^*_j.w_j$$
 \begin{algorithmic}[1]
 \STATE Résoudre le \textbf{dual} pour \textbf{\titre{SC}}
 \STATE Soit $y^*$ la solution obtenue
-\STATE Sélectionner $j$ dans $I'$ si l'inégalité correspondante dans le \textbf{dual} est serrée \textit{(donc l'égalité)}.\\
+\STATE Sélectionner $j$ dans $I'$ si l'inégalité correspondante dans le
+\textbf{dual} est serrée \textit{(donc l'égalité)}.\\
 \textit{(c'est-à-dire $\sum_{i : e_i \in S_j} (y^*_i) = w_j$)}
 \end{algorithmic}
 \end{algorithm}
 
-\begin{exemple}[Set Cover] (Voir feuilles des résultats obtenus avec \textbf{CPLEX}) \\
+\begin{exemple}[Set Cover] (Voir feuilles des résultats obtenus avec
+\textbf{CPLEX}) \\
 $y^* = (0,2,0,3,4,0)$ \\
 $I = \{2,3,4,5\}$ (les contraintes serrées sont $c_2$, $c_3$, $c_4$ et $c_5$)\\
 $APP=9+5=14$.
 \end{exemple}
 
-\begin{exemple}[Vertex Cover] (Voir feuilles des résultats obtenus avec \textbf{CPLEX}) \\
+\begin{exemple}[Vertex Cover] (Voir feuilles des résultats obtenus avec
+\textbf{CPLEX}) \\
 $I' = \{1,2,3,4,5\}$
 \end{exemple}
 
-On peut montrer que cette $2^{\text{eme}}$ approche ne fait jamais mieux que la première. En effet, $I \subseteq I'$ c'est-à-dire que les
-indices sélectionnés par \textbf{Det\_Rounding\_SC} est un sous-ensemble des indices sélectionnés par \textbf{Dual\_Rounding\_SC}.
+On peut montrer que cette $2^{\text{ème}}$ approche ne fait jamais mieux que la
+première. En effet, $I \subseteq I'$ c'est-à-dire que les indices sélectionnés
+par \textbf{Det\_Rounding\_SC} est un sous-ensemble des indices sélectionnés par
+\textbf{Dual\_Rounding\_SC}.
 
 \begin{lemme}
 La collection des $S_j$ tq $j\in I'$ est une couverture.$ $\\
 \begin{proof}[par l'absurde]
-Supposons qu'il existe $e_k$ qui n'est pas couvert par les sous-ensembles $S_j$, $j\in I'$.\\
+Supposons qu'il existe $e_k$ qui n'est pas couvert par les sous-ensembles $S_j$,
+$j\in I'$.\\
 Donc, par construction, et pour tout ensemble $S_j$ contenant $e_k$ :
 $$\sum_{i : e_i \in S_j}(y^*_i) < w_j $$
 \begin{center}
-\textit{(contrainte non serrée, sinon on aurait selectionné $S_j$)}
+\textit{(contrainte non serrée, sinon on aurait sélectionné $S_j$)}
 \end{center}
 
-On définit $\epsilon$ comme la plus petite différence entre le \textbf{membre droit} \textit{(rhs)} et le \textbf{membre gauche}
+On définit $\epsilon$ comme la plus petite différence entre le \textbf{membre
+droit} \textit{(rhs)} et le \textbf{membre gauche}
 \textit{(lhs)} des contraintes/inégalités impliquant $e_k$.
-C'est-à-dire $\epsilon = \min_{j:e_k \in S_j} {(w_j - \sum_{i : e_i \in S_j} y^*_i)}$.
+C'est-à-dire
+$\epsilon = \min_{j:e_k \in S_j} {(w_j - \sum_{i : e_i \in S_j} y^*_i)}$.
 $\Rightarrow$ On a que $\boxed{\epsilon > 0}$. \\
 
 On définit à présent
@@ -908,18 +959,22 @@ $$\sum_{i:e_i\in S_j} y'_i = \sum_{i:e_i\in S_j}(y^*_i+\epsilon) \leq w_j$$
 \item pour tout $j$ t.q $e_k \not\in S_j$ :
 $$\sum_{i:e_i\in S_j} y'_i = \sum_{i:e_i\in S_j}(y^*_i) \leq w_j$$
 \end{itemize}
-Pourtant $\sum y'_i > \sum y^*_i \Rightarrow$ $y'$ est meilleure que la solution optimale.
+Pourtant $\sum y'_i > \sum y^*_i \Rightarrow$ $y'$ est meilleure que la solution
+optimale.
 \contrad
 \end{proof}
 \end{lemme}
 
-\begin{thm} L'algorithme \textbf{Dual\_Rounding\_SC} est un algorithme d'approximation de facteur $f$.
+\begin{thm} L'algorithme \textbf{Dual\_Rounding\_SC} est un algorithme
+d'approximation de facteur $f$.
 \begin{proof}\textit{(idée)}
 \noindent \begin{itemize}
-\item[*] Quand on choisit un ensemble $S_j$ dans la couverture, on ``paye'' en facturant $y^*_i$ \\ à chacun de ses éléments $i$.
-\item[*] Chaque élément est facturé au plus une fois pour chaque ensemble qui le contient \\ \textit{(et donc au plus $f$ fois, par
-définition de $f$)}.
-\item[*] Le coût total est au plus $f$ fois le cout de la solution optimale, c'est-à-dire \textit{(dualité forte)}:
+\item[*] Quand on choisit un ensemble $S_j$ dans la couverture, on ``paye'' en
+facturant $y^*_i$ \\ à chacun de ses éléments $i$.
+\item[*] Chaque élément est facturé au plus une fois pour chaque ensemble qui
+le contient \\ \textit{(et donc au plus $f$ fois, par définition de $f$)}.
+\item[*] Le coût total est au plus $f$ fois le cout de la solution optimale,
+c'est-à-dire \textit{(dualité forte)}:
 $$\text{COUT\_TOTAL} = f.\sum_{i=1}^n(y^*_i) = f.Z^*_{LP} \leq f.OPT$$
 \end{itemize}
 \end{proof}
@@ -927,8 +982,10 @@ $$\text{COUT\_TOTAL} = f.\sum_{i=1}^n(y^*_i) = f.Z^*_{LP} \leq f.OPT$$
 
 \subsection{La méthode primale-duale}
 
-\noindent On a vu 2 algorithmes avec facteur $f$ (sections 2.1 et 2.2) mais ils nécessitent de résoudre un \textbf{\titre{LP}}.\\
-\indent $\Rightarrow$ On va utiliser la preuve du lemme de la section 2.2 \textit{(dual rounding)} pour en tirer un algorithme.
+\noindent On a vu 2 algorithmes avec facteur $f$ (sections 2.1 et 2.2) mais ils
+nécessitent de résoudre un \textbf{\titre{LP}}.\\
+\indent $\Rightarrow$ On va utiliser la preuve du lemme de la section 2.2
+\textit{(dual rounding)} pour en tirer un algorithme.
 
 \begin{algorithm}[h!]
 \caption{Primal\_Dual\_SC}
@@ -951,21 +1008,24 @@ $arg\min_{i\in A}(x_i)$ donne le $k$ tel que $x_k$ est le minimum des $x_i$.
 \end{rem}
 
 \begin{exemple}
-Voir section $1.4$ de la feuille ``Resultats obtenus avec CPLEX''. Appliquons l'algorithme : \\
-$ $\\
+Voir section $1.4$ de la feuille ``Resultats obtenus avec CPLEX''. Appliquons
+l'algorithme : \\
 \indent $y \leftarrow 0$, $I \leftarrow \{\}$
 \begin{itemize}
 \item \textbf{Itération $1$} ($e_i = e_1$) :\\
-on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_1$ et on calcule $\Delta_k$ :
+on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_1$ et on
+calcule $\Delta_k$ :
 	\begin{itemize}
-	\item $c_1\ :\ y_1+y_3+y_5 \leq 5\ \Leftrightarrow 0+0+0\leq 5 \Rightarrow \Delta_1 = 5$
+	\item $c_1\ :\ y_1+y_3+y_5 \leq 5\ \Leftrightarrow 0+0+0\leq 5 \Rightarrow
+    \Delta_1 = 5$
 	\item $c_3\ :\ y_1+y_2 \leq 2\ \Rightarrow \Delta_3 = 2$
 	\end{itemize}
 	$\hookrightarrow l = 3$ \\
 	$\hookrightarrow y = (2,0,0,0,0,0)$\\
 	$\hookrightarrow I = \{3\}$\\
 \item \textbf{Itération $2$} ($e_i = e_3$ car $e_2$ est couvert par $S_3$) :\\
-on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_3$ et on calcule $\Delta_k$ :
+on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_3$ et on
+calcule $\Delta_k$ :
 	\begin{itemize}
 	\item $c_1\ :\ 2+y_3+y_5 \leq 5\ \Rightarrow \Delta_1 = 3$
 	\item $c_4\ :\ y_3+y_4 \leq 3\ \Rightarrow \Delta_4 = 3$
@@ -974,7 +1034,8 @@ on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_3$ et on
 	$\hookrightarrow y = (2,0,3,0,0,0)$\\
 	$\hookrightarrow I = \{1,3\}$\\
 \item \textbf{Itération $3$} ($e_i = e_4$) :\\
-on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_4$ et on calcule $\Delta_k$ :
+on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_4$ et on
+calcule $\Delta_k$ :
 	\begin{itemize}
 	\item $c_2\ :\ y_2+y_4+y_5 \leq 5\ \Rightarrow \Delta_2 = 5$
 	\item $c_4\ :\ 3+y_4 \leq 3\ \Rightarrow \Delta_4 = 0$
@@ -983,7 +1044,8 @@ on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_4$ et on
 	$\hookrightarrow y = (2,0,3,0,0,0)$\\
 	$\hookrightarrow I = \{1,3,4\}$ \\
 \item \textbf{Itération $4$} ($e_i = e_6$) :\\
-on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_6$ et on calcule $\Delta_k$ :
+on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_6$ et on
+calcule $\Delta_k$ :
 	\begin{itemize}
 	\item $c_2\ :\ \ldots\ \Rightarrow \Delta_2 = 5$
 	\item $c_5\ :\ \ldots\ \Rightarrow \Delta_4 = 0$
@@ -994,13 +1056,15 @@ on considère toutes les contraintes $c_k$ correspondant aux $S_k \ni e_6$ et on
 \end{itemize}
 \indent$\quad$ \textbf{fin.} \textit{(tout est couvert)}
 \end{exemple}
-$ $\\
 
 \begin{rem}
-Cet algorithme est intéressant car il est simple à implémenter et qu'il ne nécessite pas de résoudre le \titre{\textbf{LP}}.
+Cet algorithme est intéressant car il est simple à implémenter et qu'il ne
+nécessite pas de résoudre le \titre{\textbf{LP}}.
 \end{rem}
 
-\begin{thm} L'algorithme Primal\_Dual\_SC est un algorithme de $f$-approximation. \end{thm}
+\begin{thm}
+L'algorithme Primal\_Dual\_SC est un algorithme de $f$-approximation.
+\end{thm}
 
 \subsection{Algorithme d'approximation glouton}
 
@@ -1008,7 +1072,8 @@ Cet algorithme est intéressant car il est simple à implémenter et qu'il ne n�
 \caption{Greedy\_SC}
 \begin{algorithmic}[1]
 \STATE $i\leftarrow \{\}$
-\STATE $\forall j,\ \hat{S}_j \leftarrow S_j$ \textit{// Cette variable représente les éléments non-couverts de $S_j$}
+\STATE $\forall j,\ \hat{S}_j \leftarrow S_j$ \textit{// Cette variable
+représente les éléments non-couverts de $S_j$}
 \WHILE{$I$ n'est pas une couverture}
 \STATE $l\leftarrow arg\min_{j:\hat{S}_j \neq \{\}} \dfrac{w_j}{|\hat{S}_j|}$
 \STATE $I \leftarrow I\cup \{l\}$
@@ -1023,35 +1088,45 @@ Cet algorithme est intéressant car il est simple à implémenter et qu'il ne n�
 \begin{itemize}
 \item[] $I \leftarrow \{\}$
 \item[] $\hat{S}_j \leftarrow S_j$
-\item[] \textbf{iteration 1} : $l = 3\ \left(\dfrac{2}{2} < \dfrac{3}{2} < \dfrac{5}{3} = \dfrac{5}{3} < \dfrac{4}{2}\right)$
-\item[] \textbf{iteration 2} : $l = 4\ \left(\dfrac{3}{2} < \dfrac{4}{2} < \dfrac{5}{2} = \dfrac{5}{2}\right)$
-\item[] \textbf{iteration 3} : $l = 5\ \left(\dfrac{4}{2} < \dfrac{5}{1} < \dfrac{5}{1}\right)$
+\item[] \textbf{iteration 1} : $l = 3\ \left(\dfrac{2}{2} < \dfrac{3}{2} <
+\dfrac{5}{3} = \dfrac{5}{3} < \dfrac{4}{2}\right)$
+\item[] \textbf{iteration 2} : $l = 4\ \left(\dfrac{3}{2} < \dfrac{4}{2} <
+\dfrac{5}{2} = \dfrac{5}{2}\right)$
+\item[] \textbf{iteration 3} : $l = 5\ \left(\dfrac{4}{2} < \dfrac{5}{1} <
+\dfrac{5}{1}\right)$
 \item[] $I \leftarrow \{3,4,5\}$ $\Longrightarrow$ \textbf{solution optimale !}
 \end{itemize}
 \end{multicols}
 \end{exemple}
 
-Cet algorithme est beaucoup plus simple et en fait le meilleur pour \textbf{\titre{SC}} \textit{(on peut pas faire meilleur algorithme
-d'approximation)} mais ce qu'on gagne en simplicité dans l'algorithme, on va le perdre dans le calcul du facteur d'approximation.
+Cet algorithme est beaucoup plus simple et en fait le meilleur pour
+\textbf{\titre{SC}} \textit{(on peut pas faire meilleur algorithme
+d'approximation)} mais ce qu'on gagne en simplicité dans l'algorithme, on va le
+perdre dans le calcul du facteur d'approximation.
 
 \begin{rappel}
-Pour le \textbf{\titre{VC}}, nous avons déjà appliqué ce type d'algorithme. Pour rappel, il donnait un facteur d'approximation $\sim
-\log{k}$ ce qui n'est pas un facteur borné. Cet algorithme ne donne donc pas toujours de très bons résultats mais c'est en général assez
-bon.
+Pour le \textbf{\titre{VC}}, nous avons déjà appliqué ce type d'algorithme.
+Pour rappel, il donnait un facteur d'approximation $\sim\log{k}$ ce qui n'est
+pas un facteur borné. Cet algorithme ne donne donc pas toujours de très bons
+résultats mais c'est en général assez bon.
 \end{rappel}
 
 \begin{interlude}[Nombre harmonique]
 On note $H_k$ le $k^{\text{ème}}$ nombre harmonique qui est calculé comme :
-$$ H_k = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \ldots + \frac{1}{k} = \sum_{i=1}^k \frac{1}{i} \sim \ln{(k)} $$
+$$ H_k = 1 + \frac{1}{2} + \frac{1}{3} + \frac{1}{4} + \ldots + \frac{1}{k} =
+\sum_{i=1}^k \frac{1}{i} \sim \ln{(k)} $$
 
 \begin{center}
 \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
 \hline
-$k$		& $1$ & $2$	& $3$ 	  & $\ldots$ & $6$    & $\ldots$ & $100$  & $\ldots$ & $10000$ \\
+$k$		& $1$ & $2$	& $3$ 	  & $\ldots$ & $6$    & $\ldots$ & $100$  & $\ldots$
+& $10000$ \\
 \hline
-$H_k$		& $1$ & $1.5$  & $1.83$ & $\ldots$ & $2.45$ & $\ldots$ & $5.19$ & $\ldots$ & $9.79$ \\
+$H_k$		& $1$ & $1.5$  & $1.83$ & $\ldots$ & $2.45$ & $\ldots$ & $5.19$
+& $\ldots$ & $9.79$ \\
 \hline
-$\ln{(k)}$	& $0$ & $0.69$ & $1.09$ & $\ldots$ & $1.79$ & $\ldots$ & $4.6$  & $\ldots$ & $9.21$ \\
+$\ln{(k)}$	& $0$ & $0.69$ & $1.09$ & $\ldots$ & $1.79$ & $\ldots$ & $4.6$
+& $\ldots$ & $9.21$ \\
 \hline
 \end{tabular}
 \end{center}
@@ -1059,38 +1134,50 @@ $\ln{(k)}$	& $0$ & $0.69$ & $1.09$ & $\ldots$ & $1.79$ & $\ldots$ & $4.6$  & $\l
 
 \newpage
 
-\begin{thm}L'algorithme \textbf{Greedy\_SC} est un algorithme d'$H_n$-approximation où $n$ est le nombre d'éléments à couvrir.
+\begin{thm}L'algorithme \textbf{Greedy\_SC} est un algorithme
+d'$H_n$-approximation où $n$ est le nombre d'éléments à couvrir.
 \begin{proof}$ $\\
 \begin{itemize}
-\item L'algorithme est \textbf{polynomial} car $O(m)$ itérations (à chaque itération on sélectionne un sous-ensemble et il y en a maximum
-$m$) et pour chaque itération, un travail en $O(m)$ est effectué (calcul des ratios et du minimum) $\Rightarrow O(m^2)$.
+\item L'algorithme est \textbf{polynomial} car $O(m)$ itérations (à chaque
+itération on sélectionne un sous-ensemble et il y en a maximum
+$m$) et pour chaque itération, un travail en $O(m)$ est effectué (calcul des
+ratios et du minimum) $\Rightarrow O(m^2)$.
 \item On définit :
 	\begin{itemize}
-	\item[$\blacktriangle$] $n_k$ comme le nombre d'éléments non-couverts au début de la $k^{\text{ème}}$ itération,
-	\item[$\blacktriangle$] $l$ comme le nombre d'itérations utilisées pour \textbf{Greedy\_SC},\\
+	\item[$\blacktriangle$] $n_k$ comme le nombre d'éléments non-couverts au
+    début de la $k^{\text{ème}}$ itération,
+	\item[$\blacktriangle$] $l$ comme le nombre d'itérations utilisées pour
+    \textbf{Greedy\_SC},\\
 	$\Rightarrow$ ainsi,
 		\begin{itemize}
 		\item[$\vartriangle$] $n_1 = n$
 		\item[$\vartriangle$] $n_{l+1} = 0$
-		\item[\rouge{$\blacktriangle$}] \rouge{$\mathbf{n_k > n_{k+1}}$ \textbf{(*)}}
+		\item[\rouge{$\blacktriangle$}] \rouge{$\mathbf{n_k > n_{k+1}}$
+        \textbf{(*)}}
 		\end{itemize}
-	\item[$\blacktriangle$] $I_k$ (pour une itération $k$) comme l'indice des ensembles sélectionnés jusque là (donc lors des itérations
+	\item[$\blacktriangle$] $I_k$ (pour une itération $k$) comme l'indice des
+    ensembles sélectionnés jusque là (donc lors des itérations
 	$1$, $\ldots$, $k-1$),
-	\item[$\blacktriangle$] $\hat{S}_j$ comme l'ensemble des éléments non couverts dans $S_j$ au début de l'itération $k$,
+	\item[$\blacktriangle$] $\hat{S}_j$ comme l'ensemble des éléments non
+    couverts dans $S_j$ au début de l'itération $k$,
 	$$\hat{S}_j = S_j - \bigcup_{p\in I_k}{S_p}$$
 	\end{itemize}
-\item On suppose que (on le prouvera par après), pour l'ensemble $S_j$ choisi à l'itération $k$ :
-$$ w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT = \frac{|\hat{S}_j|}{n_k}OPT\ \text{\textbf{(1)}}$$
+\item On suppose que (on le prouvera par après), pour l'ensemble $S_j$ choisi à
+l'itération $k$ :
+$$ w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT = \frac{|\hat{S}_j|}{n_k}OPT\
+\text{\textbf{(1)}}$$
 \item Sous l'hypothèse que \textbf{(1)} est vraie, on a :
 $$ \begin{eqnarray}
 APP & = & \sum_{j\in I}(w_j) \leq \sum_{k=1}^l \frac{(n_k -n_{k+1})}{n_k}OPT\\
 	& = & OPT \sum_{k=1}^l \frac{(n_k -n_{k+1})}{n_k}\\
-	& = & OPT \sum_{k=1}^l \left(\frac{1}{n_k} + \frac{1}{(n_k-1)} +\ldots + \frac{1}{(n_{k+1}+1)}\right)\text{ (car $n_k > n_{k+1}$) }\\
+	& = & OPT \sum_{k=1}^l \left(\frac{1}{n_k} + \frac{1}{(n_k-1)} +\ldots +
+          \frac{1}{(n_{k+1}+1)}\right)\text{ (car $n_k > n_{k+1}$) }\\
 	& = & OPT \sum_{i=1}^l \frac{1}{i} \\
 	& = & OPT.H_l
 \end{eqnarray}$$ $$\Rightarrow \frac{APP}{OPT} \leq H_n$$
 \begin{exemple}($n_k=6$ et $n_{k+1}=2$) \\
-$\frac{n_k - n_{k+1}}{n_k}=\frac{6-2} 6 \leq \frac 1 6 +\frac 1 6 +\frac 1 6 +\frac 1 6 \leq \frac 1 6 +\frac 1 5 +\frac 1 4 +\frac 1 3$
+$\frac{n_k - n_{k+1}}{n_k}=\frac{6-2} 6 \leq \frac 1 6 +\frac 1 6 +\frac 1 6 +
+\frac 1 6 \leq \frac 1 6 +\frac 1 5 +\frac 1 4 +\frac 1 3$
 \end{exemple}
 \end{itemize}
 \end{proof}
@@ -1102,39 +1189,53 @@ Il ne reste donc qu'à prouver l'inégalité \textbf{(1)}. \\
 
 \begin{proof}[$w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT$]$ $\\
 A l'itération $k$, on a
-$$ \min_{j:\hat{S}_j \neq \{\}} \left(\frac{w_j}{|\hat{S}_j|}\right) \leq \frac{OPT}{n_k}\qquad \text{\textbf{(2)}}$$
+$$ \min_{j:\hat{S}_j \neq \{\}} \left(\frac{w_j}{|\hat{S}_j|}\right) \leq
+\frac{OPT}{n_k}\qquad \text{\textbf{(2)}}$$
 On observe :
 \begin{itemize}
-\item il existe une solution optimale qui couvre $n$ éléments pour un coût \textbf{OPT},
-\item au début, il existe un sous-ensemble qui couvre ses éléments avec un poids moyen $\frac{w_j}{|S_j|} \leq \frac{OPT}{n}$
-\item de manière similaire, quand $p$ éléments ont été couverts, à l'itération $k$, la même solution \textbf{OPT} peut couvrir les
+\item il existe une solution optimale qui couvre $n$ éléments pour un coût
+\textbf{OPT},
+\item au début, il existe un sous-ensemble qui couvre ses éléments avec un poids
+moyen $\frac{w_j}{|S_j|} \leq \frac{OPT}{n}$
+\item de manière similaire, quand $p$ éléments ont été couverts, à l'itération
+$k$, la même solution \textbf{OPT} peut couvrir les
 $n-p$ éléments non-couverts avec poids $\leq$ \textbf{OPT}.
 \end{itemize}
-$\Rightarrow$ il existe un sous ensemble qui couvre ses propres éléments non-couverts avec un poids $\leq \frac{OPT}{n-p}$ et $n-p =
-n_k$ $\Rightarrow$ \textbf{(2)} est prouvée. \\
+$\Rightarrow$ il existe un sous ensemble qui couvre ses propres éléments
+non-couverts avec un poids $\leq \frac{OPT}{n-p}$ et $n-p = n_k$ $\Rightarrow$
+\textbf{(2)} est prouvée. \\
 
-\noindent Donc, on choisit $S_j$ à l'itération $k$ tel que : $\frac{w_j}{|\hat{S}_j|} \leq \frac{OPT}{n_k}$ (par \textbf{(2)}).\\
-$\Longrightarrow$ Il y aura donc $|\hat{S}_j|$ éléments nouvellement couverts ce qui signifie $n_{k+1} = n_k-|\hat{S}_j| $. \\
+\noindent Donc, on choisit $S_j$ à l'itération $k$ tel que:
+$\frac{w_j}{|\hat{S}_j|} \leq \frac{OPT}{n_k}$ (par \textbf{(2)}).\\
+$\Longrightarrow$ Il y aura donc $|\hat{S}_j|$ éléments nouvellement couverts ce
+qui signifie $n_{k+1} = n_k-|\hat{S}_j| $. \\
 Dès lors $\dfrac{w_j}{|\hat{S}_j|} \leq \frac{OPT}{n_k}$ devient
 $$w_j \leq \frac{(OPT.|\hat{S}_j|)}{n_k} = \frac{(n_k-n_{k+1})}{n_k}.OPT$$
 
 \cqfd
 \end{proof}
 
-\begin{thm} L'algorithme \textbf{Greedy\_SC} est un algorithme de $H_g$-approximation où $g = \max_{j}(|S_j|)$. \\($g$ est en fait le
-maximum d'éléments dans un sous-ensemble)
+\begin{thm} L'algorithme \textbf{Greedy\_SC} est un algorithme de
+$H_g$-approximation où $g = \max_{j}(|S_j|)$\\ ($g$ est en fait le maximum
+d'éléments dans un sous-ensemble).
 \end{thm}
 
 \subsection{Conclusion du chapitre}
 
-On a testé plusieurs types d'algorithmes d'approximation et on peut en conclure qu'il n'y en a pas un qui est meilleur que tous les
-autres, cela dépendant des instances \textit{(bien que pour le \titre{\textbf{SC}} on a très peu d'espoir de faire mieux que l'algorithme
-glouton)}. On terminera cette section par l'énoncé d'un résultat bien connu sur lequel on va se baser pour conjecturer que $\mathcal{P}
-\neq \mathcal{NP}$.
+On a testé plusieurs types d'algorithmes d'approximation et on peut en conclure
+qu'il n'y en a pas un qui est meilleur que tous les autres, cela dépendant des
+instances \textit{(bien que pour le \titre{\textbf{SC}} on a très peu d'espoir
+de faire mieux que l'algorithme glouton)}. On terminera cette section par
+l'énoncé d'un résultat bien connu sur lequel on va se baser pour conjecturer
+que $\mathcal{P} \neq \mathcal{NP}$.
 
-\begin{thm}[Hardness result] Sous l'hypothèse que la conjecture ``jeux uniques'' (conjecture disant que le problème des ``jeux uniques''
-est $\mathcal{NP}$-difficile, ce qui n'est pas encore prouvé) est vraie et s'il existe un algorithme d'$\alpha$-approximation (général,
-évidemment) pour \textbf{\titre{VC}} avec $\alpha < 2$, alors $\mathcal{P} = \mathcal{NP}$. \end{thm}
+\begin{thm}[Hardness result]
+Sous l'hypothèse que la conjecture ``jeux uniques'' (conjecture disant que le
+problème des ``jeux uniques'' est $\mathcal{NP}$-difficile, ce qui n'est pas
+encore prouvé) est vraie et s'il existe un algorithme
+d'$\alpha$-approximation (général, évidemment) pour \textbf{\titre{VC}} avec
+$\alpha < 2$, alors $\mathcal{P} = \mathcal{NP}$.
+\end{thm}
 
 \vspace{22em}
 \begin{flushright}

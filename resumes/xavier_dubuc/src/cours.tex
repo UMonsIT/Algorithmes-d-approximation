@@ -1170,8 +1170,10 @@ $$ w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT = \frac{|\hat{S}_j|}{n_k}OPT\
 $$ \begin{eqnarray}
 APP & = & \sum_{j\in I}(w_j) \leq \sum_{k=1}^l \frac{(n_k -n_{k+1})}{n_k}OPT\\
 	& = & OPT \sum_{k=1}^l \frac{(n_k -n_{k+1})}{n_k}\\
-	& = & OPT \sum_{k=1}^l \left(\frac{1}{n_k} + \frac{1}{(n_k-1)} +\ldots +
-          \frac{1}{(n_{k+1}+1)}\right)\text{ (car $n_k > n_{k+1}$) }\\
+	& = & OPT \sum_{k=1}^l \left(\frac{1}{n_k} + \frac{1}{n_k} + \ldots + 
+	  \frac{1}{n_k}\right) \text{ (car $n_k > n_{k+1}$)}\\
+	& \leq & OPT \sum_{k=1}^l \left(\frac{1}{n_k} + \frac{1}{(n_k-1)} +\ldots +
+          \frac{1}{(n_{k+1}+1)}\right)\\
 	& = & OPT \sum_{i=1}^l \frac{1}{i} \\
 	& = & OPT.H_l
 \end{eqnarray}$$ $$\Rightarrow \frac{APP}{OPT} \leq H_n$$

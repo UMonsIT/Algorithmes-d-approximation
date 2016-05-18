@@ -781,7 +781,8 @@ En conséquence, $j \in I$ par l'algorithme et $e_i$ est couvert.
 \end{proof}
 \end{lemme}
 
-\begin{thm} Det\_Rounding\_SC est un algorithme de $f$-\textit{approximation} pour \textbf{\titre{SC}}.
+\begin{thm} Det\_Rounding\_SC est un algorithme de $f$-\textit{approximation}
+pour \textbf{\titre{SC}}.
 \begin{proof}
 On voit que l'algorithme est polynomial.\\
 Prouvons que la solution approché est égale à $f$ fois la solution optimale,
@@ -1239,38 +1240,48 @@ $\alpha < 2$, alors $\mathcal{P} = \mathcal{NP}$.
 
 \vspace{22em}
 \begin{flushright}
-$\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exochap2}.\end{large}
+$\hookrightarrow$
+\begin{large}Voir exercices dans l'annexe~\ref{exochap2}.\end{large}
 \end{flushright}
 
 \newpage
 
 \section{Algorithmes gloutons et de recherche locale}
 
-Pour rappel, on a utilisé ce type d'algorithme au chapitre 2 pour résoudre le \textbf{\titre{SC}} avec un facteur d'approximation de
-$H_n$ (et même $H_g$). Dans ce chapitre nous allons changer d'approche, au lieu de définir un problème et d'utiliser plusieurs approches
-pour l'approximer, nous allons voir plusieurs problèmes que l'on va uniquement considérer via l'approche gloutone ou de la recherche
-locale. Mais qu'est-ce exactement un algorithme glouton ? et un algorithme de recherche locale ?
+Pour rappel, on a utilisé ce type d'algorithme au chapitre 2 pour résoudre le
+\textbf{\titre{SC}} avec un facteur d'approximation de $H_n$ (et même $H_g$).
+Dans ce chapitre nous allons changer d'approche, au lieu de définir un problème
+et d'utiliser plusieurs approches pour l'approximer, nous allons voir plusieurs
+problèmes que l'on va uniquement considérer via l'approche gloutone ou de la
+recherche locale. Mais qu'est-ce exactement un algorithme glouton ? et un
+algorithme de recherche locale ?
 
 \begin{de}[Algorithme glouton]
-Algorithme où la solution est construite \textbf{pas à pas}. A chaque pas la \textbf{partie} suivante est construite en prenant une
-décision qui est localement la meilleure possible.
+Algorithme où la solution est construite \textbf{pas à pas}. A chaque pas la
+\textbf{partie} suivante est construite en prenant une décision qui est
+localement la meilleure possible.
 \end{de}
 
-\begin{exemple}[Chapitre 2] \textbf{Greedy\_SC} est un algorithme où le choix local consiste à prendre le sous-ensemble avec le meilleur
-ratio $\dfrac{poids}{\#\text{éléments que l'on couverait en prenant le sous-ensemble}}$.
+\begin{exemple}[Chapitre 2] \textbf{Greedy\_SC} est un algorithme où le choix
+local consiste à prendre le sous-ensemble avec le meilleur ratio
+$\dfrac{poids}{\#\text{éléments que l'on couverait en prenant le sous-ensemble}
+}$.
 \end{exemple}
 
 \begin{de}[Algorithme de recherche locale]
 \begin{multicols}{2}
 \includegraphics[scale=0.25]{graphique.pdf}
 $ $\\$ $\\$ $\\$ $\\
-Algorithme commençant avec une \textbf{solution initiale réalisable} qui est améliorée \textbf{pas à pas} en considérant le
-\textbf{voisinage} de cette solution. Dès que ce n'est plus possible, l'algorithme s'arrête.
+Algorithme commençant avec une \textbf{solution initiale réalisable} qui est
+améliorée \textbf{pas à pas} en considérant le \textbf{voisinage} de cette
+solution. Dès que ce n'est plus possible, l'algorithme s'arrête.
 \end{multicols}
 \end{de}
-Comme on peut le voir sur le dessin, si on est bloqué dans un optimum local, on obtient une solution qui n'est pas l'optimum global.
+Comme on peut le voir sur le dessin, si on est bloqué dans un optimum local,
+on obtient une solution qui n'est pas l'optimum global.
 \begin{exemple}[Chapitre 2]
-Pour le \textbf{\titre{SC}} on peut prendre comme voisinage ``Sélectionner un ensemble et en désélectionner un autre''.
+Pour le \textbf{\titre{SC}} on peut prendre comme voisinage
+``Sélectionner un ensemble et en désélectionner un autre''.
 \end{exemple}
 
 \subsection*{Comparaison}
@@ -1280,18 +1291,24 @@ Pour le \textbf{\titre{SC}} on peut prendre comme voisinage ``Sélectionner un e
 	\begin{itemize}
 	\item ils prennent tous deux des décisions qui optimisent un choix local,
 	\item la solution obtenue est une solution approchée,
-	\item ils sont très facilement implémentables $\rightarrow$ ils sont souvent très populaires.
+	\item ils sont très facilement implémentables $\rightarrow$ ils sont souvent
+    très populaires.
 	\end{itemize}
 \item Les différences :
 	\begin{itemize}
 	\item \begin{itemize}
-		   \item[\textbf{Glouton} :] solution partielle qui sera réalisable à la fin,
-		   \item[\textbf{Recherche locale} :] solution réalisable tout au long de l'exécution;
+		   \item[\textbf{Glouton} :] solution partielle qui sera réalisable à la
+           fin,
+		   \item[\textbf{Recherche locale} :] solution réalisable tout au long
+           de l'exécution;
 		  \end{itemize}
 	\item \begin{itemize}
-		   \item[\textbf{Glouton} :] souvent évident de prouver que l'algorithme est polynomial,
-		   \item[\textbf{Recherche locale} :] rarement polynomial avec une implémentation simple mais dans certains cas elle l'est. Ces
-		   cas nécessitent en général certaines restrictions sur les changements possibles pour assurer un temps polynomial.
+		   \item[\textbf{Glouton} :] souvent évident de prouver que l'algorithme
+           est polynomial,
+		   \item[\textbf{Recherche locale} :] rarement polynomial avec une
+           implémentation simple mais dans certains cas elle l'est. Ces cas
+           nécessitent en général certaines restrictions sur les changements
+           possibles pour assurer un temps polynomial.
 		  \end{itemize}
 	\end{itemize}
 \end{enumerate}
@@ -1300,17 +1317,23 @@ Pour le \textbf{\titre{SC}} on peut prendre comme voisinage ``Sélectionner un e
 
 \subsection{Ordonnancement de tâches sur une seule machine}
 
-\begin{flushright}\textit{(De l'anglais ``Scheduling jobs on single machine (\textbf{SSM})'')}\end{flushright}
+\begin{flushright}
+\textit{(De l'anglais ``Scheduling jobs on single machine (\textbf{SSM})'')}
+\end{flushright}
 \textbf{Scénario :}
 \begin{itemize}
-\item Vous disposez d'une machine qui ne peut exécuter qu'une seule tâche à la fois.
+\item Vous disposez d'une machine qui ne peut exécuter qu'une seule tâche à la
+fois.
 \item $A$,$B$ et $C$ sont $3$ tâches à exécuter.
 \item L'ordonnancement commencera au temps $t = 0$.
-\item Chaque tâche prend un certain temps pour être réalisée : $A = 2$, $B = 1$, $C = 4$ \textit{(unités de temps)}.
+\item Chaque tâche prend un certain temps pour être réalisée : $A = 2$, $B = 1$,
+$C = 4$ \textit{(unités de temps)}.
 \item Les tâches ne sont pas interruptibles.
-\item Chaque tâche n'est pas accessible dès le début, elles ont un temps de release(release date) :\\ $A = 0$, $B = 2$, $C = 1$.
+\item Chaque tâche n'est pas accessible dès le début, elles ont un temps de
+release(release date) :\\ $A = 0$, $B = 2$, $C = 1$.
 \item Chaque tâche a une deadline : $A = -1$, $B = 1$, $C = 10$
-\item[$\hookrightarrow$] On cherche à minimiser le retard maximal ($L_{MAX}$). \textit{(maximum lateness)}
+\item[$\hookrightarrow$] On cherche à minimiser le retard maximal ($L_{MAX}$)
+\textit{(maximum lateness)}.
 \end{itemize}
 
 Quel ordonnancement est optimal ? ($ABC$, $ACB$, $BAC$, $BCA$, $CAB$ ou $CBA$ ?)
@@ -1318,7 +1341,8 @@ Quel ordonnancement est optimal ? ($ABC$, $ACB$, $BAC$, $BCA$, $CAB$ ou $CBA$ ?)
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[scale=0.2]{ordo.pdf}
-    \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$, Job $3 = C$)}}
+    \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$,
+    Job $3 = C$)}}
     \end{center}
 \end{figure}
 \noindent En effet, on a :
@@ -1331,10 +1355,12 @@ Quel ordonnancement est optimal ? ($ABC$, $ACB$, $BAC$, $BCA$, $CAB$ ou $CBA$ ?)
 $\hookrightarrow L_{MAX} = 3$ et on ne peut faire mieux, et ce, pour 2 raisons :
 \begin{itemize}
 \item C'est la tâche $A$ qui cause le retard maximum de $3$,
-\item pour $A$, on ne peut pas faire mieux car on l'a faite le plus tôt possible.
+\item pour $A$, on ne peut pas faire mieux car on l'a faite le plus tôt
+possible.
 \end{itemize}
 
-\noindent Ceci était un exemple, nous généralisons à présent le problème. En général, on a :
+\noindent Ceci était un exemple, nous généralisons à présent le problème. En
+général, on a :
 \begin{itemize}
 \item $n$ tâches,
 \item chaque tache $j$ possède :
@@ -1345,7 +1371,8 @@ $\hookrightarrow L_{MAX} = 3$ et on ne peut faire mieux, et ce, pour 2 raisons :
    \end{itemize}
 \end{itemize}
 
-\noindent Aussi, pour chaque solution réalisable, nous introduisons certaines notations :
+\noindent Aussi, pour chaque solution réalisable, nous introduisons certaines
+notations:
 \begin{itemize}
 \item $c_j$ $=$ instant ou $j$ est finie,
 \item $L_j$ \textit{(lateness)} $= c_j - d_j$,
@@ -1358,14 +1385,16 @@ $\hookrightarrow L_{MAX} = 3$ et on ne peut faire mieux, et ce, pour 2 raisons :
 \item $p_2 = 1,\ r_1 = 2,\ d_1 = 1$
 \item $p_3 = 4,\ r_1 = 1,\ d_1 = 10$
 \end{itemize}
-\indent $\quad$ Et pour l'ordonnancement \textbf{ABC} : $L_{MAX} = L_1 = c_1 - d_1 = 2-(-1) = 3$
+\indent $\quad$ Et pour l'ordonnancement \textbf{ABC}:
+$L_{MAX} = L_1 = c_1 - d_1 = 2-(-1) = 3$
 \end{exemple}
 
 \begin{pblm}
 \textbf{MIN Schedule Single-Machine(\titre{SSM})}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} : $n$ jobs (triplets ($p_j$,$r_j$,$d_j$)),
-\item[*]\textbf{\underline{Solution}} : schedule des $n$ jobs ($\simeq\ c_j$ et $L_j$),
+\item[*]\textbf{\underline{Solution}} : schedule des $n$ jobs ($\simeq\ c_j$ et
+$L_j$),
 \item[*]\textbf{\underline{Mesure}} : $L_{MAX}$
 \end{itemize}
 \end{pblm}
@@ -1375,13 +1404,16 @@ $\hookrightarrow L_{MAX} = 3$ et on ne peut faire mieux, et ce, pour 2 raisons :
 \noindent Pour simplifier, pour tout $j$, on émet les hypothèses suivantes :
 \begin{enumerate}
 \item[$\mathbf{Hyp_1}$ :] $r_j$ et $p_j \geq 0$
-\item[$\mathbf{Hyp_2}$ :] $d_j < 0$ \textit{(pour être sur que $L_{MAX}$ soit $> 0$, et pour simplifier les choses vu qu'une seule
-deadline dans le passé suffirait)}
+\item[$\mathbf{Hyp_2}$ :] $d_j < 0$ \textit{(pour être sur que $L_{MAX}$ soit
+$> 0$, et pour simplifier les choses vu qu'une seule deadline dans le passé
+suffirait)}
 \end{enumerate}
 
 \begin{rem}
-Imaginons un algorithme de $f$-\textit{approximation} et que la solution optimale est $=0$. Par la définition, on a $APP.f=OPT$, c'est-à-
-dire $0.f = 0$ ce qui est génant par rapport à la définition $\ldots$ alors $\mathcal{P} = \mathcal{NP}$ ? \\
+Imaginons un algorithme de $f$-\textit{approximation} et que la solution
+optimale est $=0$. Par la définition, on a $APP.f=OPT$, c'est-à-dire $0.f = 0$
+ce qui est gênant par rapport à la définition\dots~alors
+$\mathcal{P} = \mathcal{NP}$ ? \\
 $\Rightarrow$ On suppose que l'optimal est toujours $> 0$.
 \end{rem}
 
@@ -1389,14 +1421,17 @@ $\Rightarrow$ On suppose que l'optimal est toujours $> 0$.
 $p_j$ et $r_j$ identiques que précédemment, on pose :
 		  $$d'_j = d_j - (\max_j (d_j + 1))$$
 $\rightarrow (\max_j (d_j + 1)) = 11$\\
-$\rightarrow d'_1 = -12, d'_2 = -10, d'_3 = -1 \Rightarrow L'_{MAX} = L_{MAX} + 11 = 3+11 = 14$ \\
-$\hookrightarrow$ on ne fait qu'une translation dans le temps, on peut retomber sur l'instance initiale simplement en soustrayant l'écart
-utilisé.
+$\rightarrow d'_1 = -12, d'_2 = -10, d'_3 = -1 \Rightarrow L'_{MAX} = L_{MAX} +
+11 = 3+11 = 14$ \\
+$\hookrightarrow$ on ne fait qu'une translation dans le temps, on peut retomber
+sur l'instance initiale simplement en soustrayant l'écart utilisé.
 \end{exemple}
 
-Nous allons maintenant élaborer un premier algorithme permettant d'approcher la solution optimale. Il s'agit d'un algorithme privilégiant
-la tâche de deadline la plus proche ou en anglais \textit{``Earliest Due Date (\textbf{EDD})''} $\rightarrow$ on commence par celle la
-plus en retard dans le cas où il y a des deadlines négatives.
+Nous allons maintenant élaborer un premier algorithme permettant d'approcher la
+solution optimale. Il s'agit d'un algorithme privilégiant la tâche de deadline
+la plus proche ou en anglais \textit{``Earliest Due Date (\textbf{EDD})''}
+$\rightarrow$ on commence par celle la plus en retard dans le cas où il y a des
+deadlines négatives.
 
 \begin{algorithm}[h!]
 \caption{EDD\_SSM}
@@ -1406,11 +1441,14 @@ plus en retard dans le cas où il y a des deadlines négatives.
 \WHILE{$todo$ n'est pas vide}
 \IF{au moins une tâche est disponible ($r_j \leq t$ ?)}
 \STATE $j\leftarrow arg\min_j{d_j}$
-\STATE $t\leftarrow t+p_j$ \textit{// le temps d'exécution est ajouté au temps courrant}
-\STATE $c_j \leftarrow t$ \textit{// le temps à laquelle la tâche est terminée est mis à jour}
+\STATE $t\leftarrow t+p_j$ \textit{// le temps d'exécution est ajouté au temps
+courant}
+\STATE $c_j \leftarrow t$ \textit{// le temps à laquelle la tâche est terminée
+est mis à jour}
 \STATE $todo \leftarrow todo \setminus \{j\}$
 \ELSE
-\STATE $t\leftarrow \min_{j\in todo}(r_j)$ \textit{// On avance à la tâche la plus rapidement disponible}
+\STATE $t\leftarrow \min_{j\in todo}(r_j)$ \textit{// On avance à la tâche la
+plus rapidement disponible}
 \ENDIF
 \ENDWHILE
 \STATE Calculer et retourner $L_{MAX}$
@@ -1420,7 +1458,8 @@ plus en retard dans le cas où il y a des deadlines négatives.
 Soit $S$ un sous-ensemble de tâches, on définit
 \begin{itemize}
 \item $r(S) = \min_{j\in S} r_j$ \textit{(la date de dispo au plus tôt pour S)}
-\item $p(S) = \sum_{j\in S} p_j$ \textit{(temps pour tout accomplir sans ``trou'')}
+\item $p(S) = \sum_{j\in S} p_j$ \textit{(temps pour tout accomplir sans
+``trou'')}
 \item $d(S) = \max_{j\in S} d_j$ \textit{(la deadline la + éloignée)}
 \item $L^*_{MAX} = OPT$.
 \end{itemize}
@@ -1428,13 +1467,15 @@ Soit $S$ un sous-ensemble de tâches, on définit
 \begin{lemme} Pour tout sous-ensemble de tâches $S$,
 $$ L^*_{MAX} \geq r(S) + p(S) - d(S) $$
 \begin{proof}
-Soit un ordonnancement optimal pour toutes les tâches ($n$ tâches), voyons le simplement comme un ordonnancement pour $S$.
+Soit un ordonnancement optimal pour toutes les tâches ($n$ tâches), voyons le
+simplement comme un ordonnancement pour $S$.
 
 \begin{exemple} (exemple précédent)
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[scale=0.2]{ordo.pdf}
-    \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$, Job $3 = C$)}}
+    \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$,
+    Job $3 = C$)}}
     \end{center}
 \end{figure}
 
@@ -1442,7 +1483,8 @@ Si on prend $S = \{A,C\}$ :
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[scale=0.2]{ordoPart.pdf}
-    \caption{Ordonnancement optimal concentré sur $S$ \textit{(Job $1 = A$, Job $3 = C$)}}
+    \caption{Ordonnancement optimal concentré sur $S$ \textit{(Job $1 = A$,
+    Job $3 = C$)}}
     \end{center}
 \end{figure}
 \end{exemple}
@@ -1450,21 +1492,26 @@ Soit $j$ la dernière tâche traitée dans $S$ :
 \begin{itemize}
 	\item[\textbf{(1)}] aucune tâche ne peut être exécutée avant $r(S)$,
 	\item[\textbf{(2)}] au total on a besoin de minimum $p(s)$ unité de temps.
-	\item[$\rightarrow$] de \textbf{(1)} et \textbf{(2)} on tire que $j$ ne peut pas être finie avant $r(S)+p(S)$,
-  	\item[$\rightarrow$] on sait également, par définition de $d(S)$, que $d(j) < d(S)$.
-  	\item[$\rightarrow$] le retard pour la tâche $j$ est au moins $r(S)+p(S) - d(S)$
-  	\item[$\hookrightarrow$] $L^*_{MAX} \geq r(S)+p(S)-d(S)$ (vu que $L^*_{MAX}$ est le retard maximal)
+	\item[$\rightarrow$] de \textbf{(1)} et \textbf{(2)} on tire que $j$ ne peut
+    pas être finie avant $r(S)+p(S)$,
+  	\item[$\rightarrow$] on sait également, par définition de $d(S)$, que
+    $d(j) < d(S)$.
+  	\item[$\rightarrow$] le retard pour la tâche $j$ est au moins
+    $r(S)+p(S) - d(S)$
+  	\item[$\hookrightarrow$] $L^*_{MAX} \geq r(S)+p(S)-d(S)$ (vu que
+    $L^*_{MAX}$ est le retard maximal)
  \end{itemize}
  \cqfd
 \end{proof}
 \end{lemme}
 
-\begin{thm}[EDD\_SSM est un algorithme de 2-approximation pour le problème SSM] (si les hypothèses $\mathbf{Hyp_1}$ et $\mathbf{Hyp_2}$
-sont vérifiées)
+\begin{thm}[EDD\_SSM est un algorithme de 2-approximation pour le problème SSM]
+(si les hypothèses $\mathbf{Hyp_1}$ et $\mathbf{Hyp_2}$ sont vérifiées)
 \begin{proof}
-Soit l'ordonnancement donné par \textbf{EDD\_SSM} et soit $j$ la tâche ayant le plus grand
-retard, on a donc : $$L_{MAX} = c_j - d_j\qquad\qquad \text{\textbf{(1)}}$$
-Faisons un focus sur $c_j$, soit $t \leq c_j$ l'instant le plus tôt tel que la machine est utilisée sans interruption pour toute la
+Soit l'ordonnancement donné par \textbf{EDD\_SSM} et soit $j$ la tâche ayant le
+plus grand retard, on a donc : $$L_{MAX} = c_j - d_j\qquad\qquad
+\text{\textbf{(1)}}$$ Faisons un focus sur $c_j$, soit $t \leq c_j$ l'instant le
+plus tôt tel que la machine est utilisée sans interruption pour toute la
 période $[t,c_j[$, c'est-à-dire la situation suivante :
 
 \begin{figure}[h!]
@@ -1476,19 +1523,24 @@ période $[t,c_j[$, c'est-à-dire la situation suivante :
 \newpage
 \noindent Sur l'intervalle $[t,c_j[$ et $S$ on sait :
 \begin{itemize}
-\item[$\bigstar$] $r(S) = t$, en effet, juste avant $t$ il y a un repos (par définition), donc aucune tâche de $S$ n'était disponible
-avant $t$ (et donc tous les $r_j$ de $S$ sont $\geq t$ (au moins une est égale à $t$, par définition de $t$ toujours).
-\item[$\bigstar$] $p(S) = c_j - t$ (vu qu'il n'y a pas de pause par construction) $= c_j - r(S)$
+\item[$\bigstar$] $r(S) = t$, en effet, juste avant $t$ il y a un repos
+(par définition), donc aucune tâche de $S$ n'était disponible avant $t$ (et donc
+tous les $r_j$ de $S$ sont $\geq t$ (au moins une est égale à $t$, par
+définition de $t$ toujours).
+\item[$\bigstar$] $p(S) = c_j - t$ (vu qu'il n'y a pas de pause par
+construction) $= c_j - r(S)$
 $$\Longrightarrow c_j = r(S)+p(S) \qquad\qquad \text{\textbf{(2)}}$$
 \end{itemize}
-Comme $d(S) < 0$ \textit{(par les hypothèses faites précédemment)}, par le lemme, on a
-$$L^*_{MAX} \geq r(S) + p(S) - d(S) \geq r(S)+p(S) = c_j\ \text{\textit{par (2)}}\qquad\qquad \text{\textbf{(3)}}$$
+Comme $d(S) < 0$ \textit{(par les hypothèses faites précédemment)}, par le
+lemme, on a $$L^*_{MAX} \geq r(S) + p(S) - d(S) \geq r(S)+p(S) = c_j\
+\text{\textit{par (2)}}\qquad\qquad \text{\textbf{(3)}}$$
 
 Si on applique à nouveau le lemme avec $S = \{j\}$, on a :
 $$L^*_{MAX} \geq r_j + p_j - d_j \geq -d_j\qquad\qquad \text{\textbf{(4)}}$$
 
 En combinant (3) et (4) (en sommant les 2 cotés) on a :
-$$L_{MAX} =_{(1)} c_j - d_j \leq 2L^*_{MAX}\qquad\qquad \text{\textit{(par (3) et (4))}}$$
+$$L_{MAX} =_{(1)} c_j - d_j \leq 2L^*_{MAX}\qquad\qquad
+\text{\textit{(par (3) et (4))}}$$
 
 et donc $$\frac{L_{MAX}}{L^*_{MAX}} \leq 2$$
 \cqfd

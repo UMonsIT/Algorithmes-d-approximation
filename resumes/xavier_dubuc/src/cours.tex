@@ -1565,15 +1565,18 @@ et donc $$\frac{L_{MAX}}{L^*_{MAX}} \leq 2$$
 
 \subsection{Le problème ``$k$-\textit{centre}''}
 
-La motivation de ce problème est de faire du clustering, c'est-à-dire diviser un ensemble de données en plusieurs sous-groupes contenant
-des données ``proches'' au sens d'une certaine distance à définir. Dans notre cas nous utiliserons la distance euclidienne.
+La motivation de ce problème est de faire du clustering, c'est-à-dire diviser
+un ensemble de données en plusieurs sous-groupes contenant des données
+``proches'' au sens d'une certaine distance à définir. Dans notre cas nous
+utiliserons la distance euclidienne.
 
 \begin{pblm}
 \textbf{MIN $k$-centre}
 \begin{itemize}
 \item[*]\textbf{\underline{Instance}} :
 \begin{itemize}
-\item graphe non-dirigé complet $G = (V,E)$ pondéré avec une distance $d_{ij} \geq 0$ entre toute paire $i$, $j$ de sommets (on a donc
+\item graphe non-dirigé complet $G = (V,E)$ pondéré avec une distance $d_{ij}
+\geq 0$ entre toute paire $i$, $j$ de sommets (on a donc
 une matrice des distances),
 \item un entier $k$ ;
 \end{itemize}
@@ -1584,11 +1587,13 @@ centre (le plus proche), cette distance est appelée le rayon.
 \end{itemize}
 \end{pblm}
 
-On fait l'hypothèse que la distance utilisée est bien une distance au sens mathématique, c'est-à-dire qu'elle réunit les 3 propriétés :
+On fait l'hypothèse que la distance utilisée est bien une distance au sens
+mathématique, c'est-à-dire qu'elle réunit les 3 propriétés :
 \begin{itemize}
 \item $\forall i \in V,\ d_{ii} = 0$
 \item $\forall i,j\in V,\ d_{ij}=d_{ji}$
-\item $\forall i,j,k \in V,\ d_{ij} \leq d_{ik} + d_{kj} \qquad$ \textit{(inégalité triangulaire)}
+\item $\forall i,j,k \in V,\ d_{ij} \leq d_{ik} + d_{kj} \qquad$
+\textit{(inégalité triangulaire)}
 \end{itemize}
 
 \newpage
@@ -1601,15 +1606,19 @@ On fait l'hypothèse que la distance utilisée est bien une distance au sens mat
     \caption{Exemple de solution optimale d'une instance avec $k=3$}
     \end{center}
 \end{figure}
-\textit{(les nombres avec une étoile sont ceux représentant les centres des groupes)}\\
-Dans cet exemple, la distance maximale (le rayon), et donc la mesure de cette solution, est la distance entre le point $2$ et le point
-$2^*$.
+\textit{(les nombres avec une étoile sont ceux représentant les centres des
+groupes)}\\
+Dans cet exemple, la distance maximale (le rayon), et donc la mesure de cette
+solution, est la distance entre le point $2$ et le point $2^*$.
 \end{exemple}
 
-Nous allons à présent essayer d'élaborer un algorithme glouton permettant de définir au moins les bons groupes, même s'il ne trouve pas
-forcément le bon point comme centre de chaque groupe. Nous proposons de commencer l'algorithme par sélectionner un point au hasard comme
-centre puis on va itérer en prenant à chaque fois le point le plus loin des centres déjà sélectionné. Pour ce faire, nous introduisons
-une notation : soit $S$ l'ensembles des centres, on note $d(i,S) = \min_{j\in S}(d_{ij})$, on a donc : $$rayon = \max_{i\in V} d(i,S)$$
+Nous allons à présent essayer d'élaborer un algorithme glouton permettant de
+définir au moins les bons groupes, même s'il ne trouve pas forcément le bon
+point comme centre de chaque groupe. Nous proposons de commencer l'algorithme
+par sélectionner un point au hasard comme centre puis on va itérer en prenant
+à chaque fois le point le plus loin des centres déjà sélectionné. Pour ce faire,
+nous introduisons une notation : soit $S$ l'ensembles des centres, on note
+$d(i,S) = \min_{j\in S}(d_{ij})$, on a donc : $$rayon = \max_{i\in V} d(i,S)$$
 
 \begin{algorithm}[h!]
 \caption{Greedy\_k\_center}
@@ -1623,7 +1632,8 @@ une notation : soit $S$ l'ensembles des centres, on note $d(i,S) = \min_{j\in S}
 \end{algorithmic}
 \end{algorithm}
 
-Quel est le pire des cas pour cet algorithme ? Voici un exemple serré (``tight'') du pire des cas (ce qui signifie qu'il montre que le
+Quel est le pire des cas pour cet algorithme ? Voici un exemple serré
+(``tight'') du pire des cas (ce qui signifie qu'il montre que le
 facteur d'approximation est atteint).
 
 \setlength{\unitlength}{1.0cm}
@@ -1642,38 +1652,51 @@ facteur d'approximation est atteint).
 \put(6,0){\color{red} \circle*{0.1}}
 \end{picture}
 
-Sur le dessin \textit{(les centres sont en rouges)} on a : $$d_{ab} = 2 d_{ac} = 2 d_{bc} $$
+Sur le dessin \textit{(les centres sont en rouges)} on a:
+$$d_{ab} = 2 d_{ac} = 2 d_{bc} $$
 
-Dans ce cas, on fait $2$ fois moins bien. L'algorithme peut donc faire \textbf{au moins} $2$ fois pire\\\indent (et en fait $2$ est
-le facteur d'approximation).
+Dans ce cas, on fait $2$ fois moins bien. L'algorithme peut donc faire
+\textbf{au moins} $2$ fois pire\\
+\indent (et en fait $2$ est le facteur d'approximation).
 \end{exemple}
 
 \newpage
 
-\begin{thm} \textbf{Greedy\_$k$\_center} est un algorithme de $2$-approximation pour le problème \textbf{$k$-center}.
+\begin{thm} \textbf{Greedy\_$k$\_center} est un algorithme de $2$-approximation
+pour le problème \textbf{$k$-center}.
 \begin{proof}$ $\\
 \begin{itemize}
-\item \textbf{L'algorithme s'effectue-t-il en temps polynomial ?} $\hookrightarrow$ oui, de manière triviale.
+\item \textbf{L'algorithme s'effectue-t-il en temps polynomial ?}
+$\hookrightarrow$ oui, de manière triviale.
 \item \textbf{L'algorithme a-t-il un facteur d'approximation égal à 2 ?} \\
-Soit $S^* = \{j_1,\ldots ,j_k\}$ une solution optimale et $r^*$ le rayon de $S^*$.\\
-$\Rightarrow$ cette solution partitionne $V$ en groupes $V_1,...,V_k$ où chaque sommet $j\in V$ est placé dans un groupe $V_i$ s'il est
-le plus proche du center $j_i$ parmi tous les centres $S^*$ (égalités brisées arbitrairement). \\
+Soit $S^* = \{j_1,\ldots ,j_k\}$ une solution optimale et $r^*$ le rayon de
+$S^*$.\\
+$\Rightarrow$ cette solution partitionne $V$ en groupes $V_1,...,V_k$ où chaque
+sommet $j\in V$ est placé dans un groupe $V_i$ s'il est le plus proche du centre
+$j_i$ parmi tous les centres $S^*$ (égalités brisées arbitrairement). \\
 \begin{center}
-	\textbf{Fait (1)} : chaque paire de points $j,j'$ dans un même groupe $V_i$ est telle que $d_{jj'} \leq 2r^*$.\\
+	\textbf{Fait (1)} : chaque paire de points $j,j'$ dans un même groupe $V_i$
+    est telle que $d_{jj'} \leq 2r^*$.\\
 \end{center}
 
-$ $\\Ce fait est logique vu que $r^*$ est le rayon du plus gros cluster, les 2 points les plus éloignés possibles sont donc de part et
-d'autres  du centre de ce cluster à une distance exacte de $r^*$.
+Ce fait est logique vu que $r^*$ est le rayon du plus gros cluster, les 2 points
+les plus éloignés possibles sont donc de part et d'autres  du centre de ce
+cluster à une distance exacte de $r^*$.
 \begin{enumerate}
-\item Supposons d'abord que chaque centre de $S$ est sélectionné par l'algorithme parmi chacun des groupes $V_1,\ldots V_k$ déterminés
-par $S^*$. Par le \textbf{fait (1)}, tout sommet de $V$ est à distance $\leq 2r^*$ d'un des centres de $S$ $\Rightarrow$ le théorème est
-prouvé.
-\item Supposons maintenant que ce ne soit pas le cas, c'est-à-dire que l'algorithme sélectionne $2$ points dans le même groupe $V_i$.
-Cela veut dire que lors d'une certaine itération $j\in V_i$ est choisi alors que $j'\in V_i$ avait déjà été choisi. Par le \textbf{fait
-(1)}, on sait que $$d_{jj'} \leq 2r^*$$
-Or l'algorithme choisit $j$ car il est actuellement \textbf{le point le plus éloigné} des centres contenus dans $S$ à cette itération.
-Donc, tous les points sont à distances $\leq 2r^*$ d'un des centres déjà dans $S$. Cette observation reste vraie à la fin de l'algorithme
-(le fait d'ajouter des centres dans $S$ n'augmente pas la distance maximale).
+\item Supposons d'abord que chaque centre de $S$ est sélectionné par
+l'algorithme parmi chacun des groupes $V_1,\ldots V_k$ déterminés par $S^*$.
+Par le \textbf{fait (1)}, tout sommet de $V$ est à distance $\leq 2r^*$ d'un des
+centres de $S$ $\Rightarrow$ le théorème est prouvé.
+\item Supposons maintenant que ce ne soit pas le cas, c'est-à-dire que
+l'algorithme sélectionne $2$ points dans le même groupe $V_i$.
+Cela veut dire que lors d'une certaine itération $j\in V_i$ est choisi alors
+que $j'\in V_i$ avait déjà été choisi. Par le \textbf{fait (1)}, on sait que
+$$d_{jj'} \leq 2r^*$$
+Or l'algorithme choisit $j$ car il est actuellement \textbf{le point le plus
+éloigné} des centres contenus dans $S$ à cette itération.
+Donc, tous les points sont à distances $\leq 2r^*$ d'un des centres déjà dans
+$S$. Cette observation reste vraie à la fin de l'algorithme (le fait d'ajouter
+des centres dans $S$ n'augmente pas la distance maximale).
 \end{enumerate}
 \end{itemize}
 \cqfd

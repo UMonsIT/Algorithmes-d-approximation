@@ -158,12 +158,16 @@ $ $ \\
 \renewcommand{\labelitemi}{$\bullet$}
 
 \begin{itemize}
-\item 2016
-\begin{itemize}
-\item Benoit Debled
-\item Julien Delplanque (\url{julien.delplanque@student.umons.ac.be})
-\item Anthony Rouneau
-\end{itemize}
+	\item 2016
+	\begin{itemize}
+		\item Benoit Debled
+		\item Julien Delplanque (\url{julien.delplanque@student.umons.ac.be})
+		\item Anthony Rouneau
+	\end{itemize}
+	\item 2017
+	\begin{itemize}
+		\item Florent Delgrange
+	\end{itemize}
 \end{itemize}
 
 \newpage
@@ -225,15 +229,14 @@ Rapide. Bon marché. Fiable. Choisissez-en deux
 \end{center}\end{quote}
 
 $\longrightarrow$ Il faut en effet sacrifier un des 3 critères, c'est-à-dire
-que si P $\neq$ NP, on ne peut pas avoir simultanément
-\indent $ $ un algorithme qui :
+que si $P \neq NP$, on ne peut pas avoir simultanément un algorithme qui :
 \begin{enumerate}
 \item trouve la solution optimale;
 \item travaille en temps polynomial;
-\item fonctionne pour tout instance du problème (toute entrée possible). \\
+\item fonctionne pour toute instance du problème (toute entrée possible). \\
 \end{enumerate}
 
-\noindent On a donc 3 choix :
+\noindent Au moins un de ces 3 points doit être relaxé :
 \begin{itemize}
 \item \textbf{Laisser tomber $3$}\\
 $\rightarrow$ Ce n'est pas toujours applicable en pratique car ça donne pas une
@@ -254,19 +257,21 @@ performance.}
 \subsection{Objectifs du cours}
 
 \begin{enumerate}
-\item Savoir que faire pour résoudre un problème NP-difficile.
-\item Découvrir et revoir des problèmes ``paradigmatiques'' \textit{(problèmes
-classiques, exemplaires, simplifiés, comme le voyageur de commerce par exemple;
-qui ont beaucoup d'applications}).
-\item Tous les problèmes intraitables ne sont pas les mêmes. Les problèmes
-\textit{NP-complet} sont identiques d'un point de vue ``résolution exacte'' mais
-peuvent être très différents d'un point de vue approximabilité
-\textit{(certains algorithmes peuvent donner une très bonne approximation,
-d'autres une moins bonne et d'autres encore, aucune)}. L'objectif consistera à
-savoir différencier ces algorithmes.
-\item Apprendre des techniques de conception et d'analyse d'algorithmes
-d'approximation. ($\leadsto$ avoir une ``boite à outils'', où les outils sont
-des algorithmes et heuristiques applicables à un grand nombre de problèmes).
+	\item Savoir que faire pour résoudre un problème NP-difficile.
+	\item Découvrir et revoir des problèmes ``paradigmatiques'' \textit{(problèmes
+		classiques, exemplaires, simplifiés, comme le voyageur de commerce par exemple;
+		qui ont beaucoup d'applications}).
+	\item Tous les problèmes intraitables ne sont pas les mêmes. Les problèmes
+		\textit{NP-complet} sont identiques d'un point de vue ``résolution exacte'' mais
+		peuvent être très différents d'un point de vue approximabilité
+		\textit{(certains algorithmes peuvent donner une très bonne approximation,
+		d'autres une moins bonne et d'autres encore, aucune)}. L'objectif consistera à
+		savoir différencier ces algorithmes.
+	\item Apprendre des techniques de conception et d'analyse d'algorithmes
+		d'approximation. ($\leadsto$ avoir une ``boite à outils'', où les outils sont
+		des algorithmes et heuristiques applicables à un grand nombre de problèmes).
+	\item \^Etre capable de relier des nouveaux problèmes à des problèmes
+		connus.
 \end{enumerate}
 
 \subsection{Problèmes d'optimisation}
@@ -280,17 +285,18 @@ parmi les solutions réalisables.
 Un problème d'optimisation $P$ est spécifié par $(I_P, SOL_P, m_P, goal_P)$ tels
 que:
 \begin{itemize}
-	\item \term{$I_P$} est un ensemble d'instances de $P$.\\
-    $\rightarrow$ e.g. pour la coloration de graphe, tous les couples
+	\item \term{$I_P$} est un ensemble d'instances de $P$, i.e., les données
+		numériques prises en entrée de $P$. \\
+    $\rightarrow$ e.g., pour la coloration de graphe, tous les couples
     (graphe,entier).
 	\item \term{$SOL_P$} est une fonction qui associe à chaque instance
-    $x \in I_P$ un ensemble de solutions réalisables de $x$ ($SOL_P(x)$).\\
-    $\rightarrow$ e.g. pour la coloration de graphe, ensemble des colorations
+    $x \in I_P$ un ensemble de solutions réalisables de $x$, i.e., $SOL_P(x)$.\\
+    $\rightarrow$ e.g., pour la coloration de graphe, ensemble des colorations
     légales possibles.
     \item \term{$m_P$} est une fonction de mesure ou fonction objectif définie
-    pour les paires $(x,y)$ tq $x \in I_p$ et $y \in SOL_P(x)$. Pour toute paire
+    pour les paires $(x,y)$ tq $x \in I_P$ et $y \in SOL_P(x)$. Pour toute paire
     $(x,y)$, $m_P(x,y)$ donne une valeur non-négative.
-    \item \term{$goal_P \in {MIN,MAX}$} spécifiant si $P$ est une problème de
+    \item \term{$goal_P \in \{ MIN,MAX \}$} spécifiant si $P$ est une problème de
     minimisation ou de maximisation.
 \end{itemize}
 $\leadsto$ Quand le contexte est clair, on peut laisser tomber le $_P$ dans les
@@ -456,17 +462,17 @@ la mesure).
 \subsection*{Définitions}
 \begin{itemize}
 \item Un problème de décision $A$ se \textbf{réduit polynomialement} en $B$,
-noté $A\propto B$, s'il existe un algorithme polynomial permettant de
+noté $A\preceq B$, s'il existe un algorithme polynomial permettant de
 transformer toute instance de $A$ en une instance de $B$ correspondante.
 \item Un problème de décision $B$ est dit \textbf{$\mathcal{NP}$-complet} si
-$B \in \mathcal{NP}$ et $\forall$ problème $A\ \mathcal{NP}$-complet, il existe
-une réduction polynomiale $A\propto B$.
-\item Une \textbf{preuve par réduction} que $A$ est $\mathcal{NP}$-complet se
+$B \in \mathcal{NP}$ et pour tout problème $A\ \mathcal{NP}$-complet, il existe
+une réduction polynomiale $A\preceq B$.
+\item Une \textbf{preuve par réduction} que $B$ est $\mathcal{NP}$-complet se
 fait en 2 étapes :
 \begin{enumerate}
-\item Prouver que $A$ est dans $\mathcal{NP}$ \textit{(il faut donc prouver que
+\item Prouver que $B$ est dans $\mathcal{NP}$ \textit{(il faut donc prouver que
 la vérification est polynomiale)};
-\item $\exists$ un problème $B$ tel que $B\propto A$ pour un problème $B$ connu
+\item Il existe un problème $A$ tel que $A\preceq B$ pour un problème $A$ connu
 comme étant $\mathcal{NP}$-complet.
 \end{enumerate}
 \item Soit un problème de décision ou d'optimisation $A$. On dit qu'un
@@ -809,10 +815,9 @@ Ensuite,
 				    & \leq & \sum_{j=1}^m w_j . f . x^*_j
                     \text{ (par \textbf{(**)})} \\
 				    &   =  & f \sum_{j=1}^m w_j . x^*_j \\
-					&   =  & \text{($f$  * valeur de la fonction objective pour
-                    la solution optimale du LP)} \\
-					&   =  & f * Z_{LP}^* \\
-					& \leq & f*OPT
+				%	&   =  & \text{($f \times$ valeur de la fonction objective pour la solution optimale du LP)} \\
+					&   =  & f \cdot Z_{LP}^* \\
+					& \leq & f \cdot OPT
 \end{eqnarray}
 \cqfd
 \end{proof}

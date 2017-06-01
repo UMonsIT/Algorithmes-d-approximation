@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt]{article}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -135,23 +135,23 @@ showspaces=false,
 %%%%%%%%%%%%%%%%%%%%%%%% DEBUT DU DOCUMENT %%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{sffamily}
-\title{\includegraphics[scale=0.48]{approx.pdf} $ $\\
-\hbox{\raisebox{0.4em}{\vrule depth 2pt height 0.4pt width \textwidth}} $ $ \\ $ $ \\
+\title{\includegraphics[scale=0.4]{approx.pdf} $ $\\
+\hbox{\raisebox{0.4em}{\vrule depth 2pt height 0.2pt width \textwidth}} $ $ \\
 \begin{Huge}\maintitlecolor{Algorithmes d'approximation}\end{Huge} \\
 $ $ \\
-\begin{LARGE}\textit{Cours}\end{LARGE}}
-\author{\textit{Xavier Dubuc} \\(\url{xavier.dubuc@umons.ac.be}) \\$ $ \\$ $\\$ $\\
-\hbox{\raisebox{0.4em}{\vrule depth 1pt height 0.4pt width 5cm}} \\ $ $\\$ $ \\$ $\\
+\begin{LARGE}Cours\end{LARGE}}
+\author{\textit{Xavier Dubuc} \\(\url{xavier.dubuc@umons.ac.be}) \\$ $\\$ $\\
+\hbox{\raisebox{0.4em}{\vrule depth 0.5pt height 0.2pt width 5cm}} \\$ $ \\$ $\\
 \includegraphics[scale=0.3]{UMONS.pdf}$\qquad \qquad$
-\includegraphics[scale=0.1]{faculte.pdf}}
-%\date{}
-\end{sffamily}
+\includegraphics[scale=0.075]{faculte.pdf}}
+\date{}
 
-\begin{document}\begin{sffamily}
-
+\begin{document}
 \maketitle
-
+\begin{center}
+	\date{\centering\normalsize{Dernière mise à jour : \today}}
+\end{center}
+\thispagestyle{empty}
 \newpage
 
 \textbf{Contributeurs:}
@@ -172,13 +172,13 @@ $ $ \\
 
 \newpage
 
-\hbox{\raisebox{0.4em}{\vrule depth 1.5pt height 0.4pt width 10cm}}
+%\hbox{\raisebox{0.4em}{\vrule depth 1.5pt height 0.4pt width 10cm}}
 
 \tableofcontents
 
-$ $\\ \hbox{\raisebox{0.4em}{\vrule depth 1.5pt height 0.4pt width 10cm}}
-
+%$ $\\ \hbox{\raisebox{0.4em}{\vrule depth 1.5pt height 0.4pt width 10cm}}
 \newpage
+
 
 \section{Introduction}
 
@@ -326,7 +326,6 @@ Graphe étoile à $n$ sommets, $S_n$.\\
     \end{center}
 \end{figure}
 \end{exemple}
-\newpage
 \begin{exemple}
 Graphe complet à $n$ sommets, $K_n$.\\
 \begin{figure}[h!]
@@ -370,7 +369,6 @@ Cycle à $n$ sommets, $C_n$.\\
 \end{figure}
 \end{exemple}
 
-\newpage
 
 \begin{exemple}
 Graphe biparti complet à $n+m$ sommets, $K_{n,m}$.\\
@@ -612,7 +610,7 @@ exemple, les antivirus ou encore les ``\textit{Houses of Graphs}''.\\
 	\item un poids non-négatif $w_j \geq 0$ pour chaque sous-ensemble $S_j$.
 	\end{itemize}
 \item[*]\textbf{\underline{Solution}} : Une collection $I$ de sous-ensembles qui
-couvrent $E$. \\ C'est-à-dire $I\subseteq \{1,2,\ldots,n\}$ telle que
+couvrent $E$. \\ C'est-à-dire $I\subseteq \{1,2,\ldots,m\}$ telle que
 $\bigcup\limits_{j\in I}{S_j} = E$.
 \item[*]\textbf{\underline{Mesure}} : $\sum\limits_{j\in I} w_j$
 \end{itemize}
@@ -622,12 +620,14 @@ $\bigcup\limits_{j\in I}{S_j} = E$.
     \begin{center}
     \includegraphics[scale=0.5]{inst_sc.pdf}
     \caption{Exemple d'instance de \titre{SC}}
+		\label{scex}
     \end{center}
 \end{figure}
 
-$I_{OPT} = \{S_3,S_4,S_5\}$. \\
-\indent Et si $w_j = 1, \forall j$ \textit{(version non-pondérée du problème)},
-alors $I_{OPT} = \{S_1,S_2\}$.
+Soit $C \in I_{SC}$, une instance de SC où $E = \{1, 2, 3, 4, 5, 6\}$ et $\sigma = \{S_1, S_2, S_3, S_4, S_5\} \subseteq \mathcal{P}(E)$ (c.f. figure \ref{scex}).\\
+$Sol^*_{SC}(C) = \{3,4,5\}$, i.e., la couverture minimale est $\{S_3, S_4, S_5 \}$.\\
+Si $w_j = 1, \; \forall j$ \textit{(version non-pondérée du problème)},
+alors $Sol^*_{SC}{C} = \{1,2\}$.
 
 \subsection{Programmation linéaire et Set Cover}
 
@@ -656,11 +656,11 @@ en général, est $\mathcal{NP}$-\textit{difficile}.
 
 \begin{propriete}
 Tout \textbf{\titre{IP}} peut être \textbf{relaxé}. \\
-Par exemple : $x_j \in \{0,1\} \Rightarrow_{\text{relaxation}} x_j \geq 0$\\
+Par exemple : \(x_j \in \{0,1\} \Rightarrow_{\text{relaxation}} x_j \geq 0\)\\
 (le $x_j \leq 1$ n'est pas utile car dès que c'est plus $0$, on sait qu'elle
 n'est plus à la valeur booléenne $0$).
 \end{propriete}
-$ $\\$ $\\$ $\\$ $\\$ $\\$ $\\
+%$ $\\$ $\\$ $\\$ $\\$ $\\$ $\\
 
 Grâce à cette idée de relaxation on peut dégager un algorithme qui semble être
 un algorithme d'approximation pour résoudre un problème \textbf{IP(*)} :
@@ -691,7 +691,12 @@ En d'autres mots, dans le cas d'une \textbf{MIN}imisation, si :
 \item $Z^*_{LP}$ est la solution optimale pour le \textbf{LP}
 \item $Z^*_{IP}$ est la solution optimale pour le \textbf{IP}
 \end{itemize}
-alors on a $\boxed{Z^*_{LP} \leq Z^*_{IP} = OPT}$.
+alors on a $\boxed{Z^*_{LP} \leq Z^*_{IP} = OPT}$. \\
+
+Le problème relaxé \textbf{LP({**})} s'exprime donc de la façon suivante :
+
+	\[ \min \;  \sum_{j=1}^m w_jx_j \]
+	\[ \textbf{s.l.c.}  \sum_{j:e_i \in S_j} x_j \geq 1 \]
 
 \begin{exemple}$ $\\
 $\max\ x_1+x_2$ \\
@@ -752,13 +757,12 @@ algorithme polynomial).}
 
 \subsubsection*{Solution pour l'arrondi \titre{SC}}
 
-Posons $f$ comme le nombre maximum de sous-ensembles dans lesquels n'importe
-quel élément apparaît,
-$$f = \max_{i=1,\ldots,n}{(f_i)}\text{ où }f_i = \left| \{j : e_i \in S_j \}
-\right|$$
+Posons $f$ comme le nombre maximum de sous-ensembles dans lesquels un même élément apparaît,
+$$f = \max_{i=1,\ldots,n}{(f_i)} \; \text{ où } \underbrace{f_i = \left| \{j : e_i \in S_j \}
+\right|}_{\text{nombre de fois qu'un élément $e_i$ \\ apparait dans un sous-ensemble sélectionné}}$$
 
 Soit $x^* = (x_1^*, x_2^*, .. x_n^*)$ la solution optimale du \textbf{LP},
-on va arrondir en incluant $S_j$ dans la solution si et seulement si
+on va arrondir (valeur entière suéprieure) en incluant $S_j$ dans la solution $Z^*_{IP}$ si et seulement si
 $x_j^* \geq \frac{1}{f}$.
 
 \begin{thm}
@@ -768,8 +772,6 @@ Cette manière de procéder est un algorithme de $f$-\textit{approximation}.
 L'adaptation de cet algorithme donne un algorithme de $2$-approximation pour le
 \titre{VC}.
 \end{corollaire}
-
-\vspace{5em}
 
 \begin{algorithm}[h!]
 \caption{Det\_Rounding\_SC}
@@ -790,7 +792,8 @@ La collection des $S_j$, $j \in I$ est une couverture.
 On va montrer que tout $e_i$ est couvert.\\
 Comme $x^*$ \textit{(la solution optimale du \textbf{LP})} est une solution
 réalisable, on a :
-$$\sum_{j : e_i\in S_j} (x^*_j) \geq 1\text{ pour un certain } e_i.$$
+$$\sum_{j : e_i\in S_j} (x^*_j) \geq 1 \; \; \forall i \in \{1, \dots, n \} \;
+\text{où} \; e_i \in E$$
 \begin{center}\textit{(une contrainte pour un élément donné)}\end{center}
 Par définition, $f_i \leq f$, on a donc au maximum $f$ termes dans la somme. \\
 Donc, il y a au moins un terme $x^*_j$ qui doit être $\geq \frac{1}{f}$ car si
@@ -832,11 +835,11 @@ la réponse au problème relaxé). En effet, prenons
 $\alpha = \frac{\sum_{j\in I}(w_j)}{Z^*_{LP}}$, de la preuve précédente on a que
 $\sum_{j\in I}(w_j) \leq f.Z^*_{LP}$ et donc $\alpha \leq f$ (dans certain cas,
 $\alpha$ peut être beaucoup plus petit que $f$). On a également
-$\frac{APP}{OPT}\leq \alpha$, ce qui fait d'$\alpha$ un meilleur facteur
+$\frac{APP}{OPT}\leq \alpha$, avec $APP = \sum_{j \in I} w_j$ et $OPT \geq Z^*_{LP}$, ce qui fait d'$\alpha$ un meilleur facteur
 d'approximation que $f$ bien qu'il ne soit calculable qu'à partir de la solution
 obtenue via la résolution du problème relaxé ($Z^*_{LP}$).
 
-\vspace{4em}
+%\vspace{4em}
 
 \begin{exemple}[Voir feuilles des résultats obtenus avec CPLEX]$ $\\
 \textbf{\titre{SC}} : $\alpha = \frac{9}{9} = 1$ \\
@@ -878,24 +881,26 @@ c'est-à-dire, en français que l'on n'accepte pas que la somme des prix à paye
 pour couvrir les éléments d'un ensemble $S_j$ soit supérieur au poids de cet
 ensemble. Le problème \textbf{dual} est défini comme suit :\\
 
-$\max\ \sum_{i=1}^n y_i$ \\
+$\max\ \sum_{i=1}^n y_i \quad $ {\small (on sélectionne $e_i$ dans l'ensemble $s_j$, avec
+	$y_i$, le ``poids" de $e_i$)}\\
 \indent s.l.c.
 \begin{itemize}
-\item $\sum_{i:e_i \in S_j}(y_i) \leq w_j\, (\forall j \in \{1,\ldots ,m\})$ \\
+\item $\sum_{i:e_i \in S_j}(y_i) \leq \underline{w_j}\, (\forall j \in \{1,\ldots ,m\}) \quad $ {\small (il ne faut pas dépasser la capacité de $S_j$)}\\
 \item $\qquad\ y_i \geq 0\, (\forall i \in \{1,\ldots ,n\})$
 \end{itemize}
 
 \subsubsection{Remarques et propriétés du dual}
 
 \begin{rems}
+$ $
 \begin{itemize}
-\item On appelle le \textbf{\titre{LP}} ``original'' le
-\textbf{problème primal}.
-\item Le \textbf{dual} du \textbf{dual} est le \textbf{primal}.
-\item A chaque variable du \textbf{dual} correspond une contrainte du
-\textbf{primal}.
-\item A chaque variable du \textbf{primal} correspond une contrainte du
-\textbf{dual}.
+	\item On appelle le \textbf{\titre{LP}} ``original'' le
+	\textbf{problème primal}.
+	\item Le \textbf{dual} du \textbf{dual} est le \textbf{primal}.
+	\item A chaque variable du \textbf{dual} correspond une contrainte du
+	\textbf{primal}.
+	\item A chaque variable du \textbf{primal} correspond une contrainte du
+	\textbf{dual}.
 \end{itemize}
 \end{rems}
 
@@ -987,17 +992,29 @@ optimale.
 
 \begin{thm} L'algorithme \textbf{Dual\_Rounding\_SC} est un algorithme
 d'approximation de facteur $f$.
-\begin{proof}\textit{(idée)}
-\noindent \begin{itemize}
-\item[*] Quand on choisit un ensemble $S_j$ dans la couverture, on ``paye'' en
-facturant $y^*_i$ \\ à chacun de ses éléments $i$.
-\item[*] Chaque élément est facturé au plus une fois pour chaque ensemble qui
-le contient \\ \textit{(et donc au plus $f$ fois, par définition de $f$)}.
-\item[*] Le coût total est au plus $f$ fois le cout de la solution optimale,
-c'est-à-dire \textit{(dualité forte)}:
-$$\text{COUT\_TOTAL} = f.\sum_{i=1}^n(y^*_i) = f.Z^*_{LP} \leq f.OPT$$
-\end{itemize}
+\begin{proof}%\textit{(idée)}
+%\noindent \begin{itemize}
+%\item[*] Quand on choisit un ensemble $S_j$ dans la couverture, on ``paye'' en
+%facturant $y^*_i$ \\ à chacun de ses éléments $i$.
+%\item[*] Chaque élément est facturé au plus une fois pour chaque ensemble qui
+%le contient \\ \textit{(et donc au plus $f$ fois, par définition de $f$)}.
+%\item[*] Le coût total est au plus $f$ fois le cout de la solution optimale,
+%c'est-à-dire \textit{(dualité forte)}:
+%$$\text{COUT\_TOTAL} = f.\sum_{i=1}^n(y^*_i) = f.Z^*_{LP} \leq f.OPT$$
+%\end{itemize}
+Comme $j \in I'$ uniquement si $w_j = \sum_{i:e_i \in S_j} y_i^*$, on a
+\begin{flalign*}
+	APP
+	&= \sum_{j \in I'} w_j = \sum_{j \in I'} \sum_{i: e_i \in S_j} y_i^* \\
+	&= \sum^n_{i=1} \underbrace{|\{j \in I' \; : \; e_i \in S_j \} | \cdot y_i^*}_{\text{nombre de fois qu'un élément $e_i$ apparait dans un sous-ensemble sélectionné}} \\
+	& \leq \sum_{i=1}^n \underbrace{f_i \cdot y_i^*}_{\text{nombre de fois que $e_i$ apparait dans tous les sous-ensembles}}\\
+	& \leq f \cdot \sum_{i=1}^n y_i^* \\
+	& = f \cdot Z^*_{LP} \\
+	& \leq f \cdot \underbrace{OPT}_{Z^*_{IP}}
+\end{flalign*}
+\cqfd
 \end{proof}
+\textit{Note} : $f$ est un facteur serré.
 \end{thm}
 
 \subsection{La méthode primale-duale}
@@ -1092,10 +1109,12 @@ L'algorithme Primal\_Dual\_SC est un algorithme de $f$-approximation.
 \caption{Greedy\_SC}
 \begin{algorithmic}[1]
 \STATE $i\leftarrow \{\}$
-\STATE $\forall j,\ \hat{S}_j \leftarrow S_j$ \textit{// Cette variable
+\STATE $\forall j,\ \hat{S}_j \leftarrow S_j$ \textit{\scriptsize // Cette variable
 représente les éléments non-couverts de $S_j$}
 \WHILE{$I$ n'est pas une couverture}
 \STATE $l\leftarrow arg\min_{j:\hat{S}_j \neq \{\}} \dfrac{w_j}{|\hat{S}_j|}$
+\textit{ \scriptsize // On choisi l'ensemble qui couvre le plus de sommets par rapport à son
+poids.}
 \STATE $I \leftarrow I\cup \{l\}$
 \STATE $\forall j,\ \hat{S}_j \leftarrow \hat{S}_j \setminus S_l$
 \ENDWHILE
@@ -1151,11 +1170,9 @@ $\ln{(k)}$	& $0$ & $0.69$ & $1.09$ & $\ldots$ & $1.79$ & $\ldots$ & $4.6$
 \end{tabular}
 \end{center}
 \end{interlude}
-
-\newpage
-
+$ $ \\
 \begin{thm}L'algorithme \textbf{Greedy\_SC} est un algorithme
-d'$H_n$-approximation où $n$ est le nombre d'éléments à couvrir.
+d'$H_n$-approximation où $n$ est le nombre d'éléments à couvrir, i.e., $|E|$.
 \begin{proof}$ $\\
 \begin{itemize}
 \item L'algorithme est \textbf{polynomial} car $O(m)$ itérations (à chaque
@@ -1180,11 +1197,11 @@ ratios et du minimum) $\Rightarrow O(m^2)$.
 	$1$, $\ldots$, $k-1$),
 	\item[$\blacktriangle$] $\hat{S}_j$ comme l'ensemble des éléments non
     couverts dans $S_j$ au début de l'itération $k$,
-	$$\hat{S}_j = S_j - \bigcup_{p\in I_k}{S_p}$$
+	$$\hat{S}_j = S_j \setminus \bigcup_{p\in I_k}{S_p}$$
 	\end{itemize}
 \item On suppose que (on le prouvera par après), pour l'ensemble $S_j$ choisi à
 l'itération $k$ :
-$$ w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT = \frac{|\hat{S}_j|}{n_k}OPT\
+$$ w_j \leq \overbrace{\frac{(n_k - n_{k+1})}{n_k}}^{\text{\scriptsize éléments ajoutés à la couverture à l'étape $k$}} OPT = \frac{|\hat{S}_j|}{n_k}OPT\
 \text{\textbf{(1)}}$$
 \item Sous l'hypothèse que \textbf{(1)} est vraie, on a :
 $$ \begin{eqnarray}
@@ -1207,9 +1224,10 @@ $\frac{n_k - n_{k+1}}{n_k}=\frac{6-2} 6 \leq \frac 1 6 +\frac 1 6 +\frac 1 6 +
 
 Il ne reste donc qu'à prouver l'inégalité \textbf{(1)}. \\
 
-\newpage
+
 
 \begin{proof}[$w_j \leq \frac{(n_k - n_{k+1})}{n_k}OPT$]$ $\\
+Dans le meilleur des cas, $\hat{S_j}$ couvre tous les éléments restants.
 A l'itération $k$, on a
 $$ \min_{j:\hat{S}_j \neq \{\}} \left(\frac{w_j}{|\hat{S}_j|}\right) \leq
 \frac{OPT}{n_k}\qquad \text{\textbf{(2)}}$$
@@ -1265,7 +1283,7 @@ $\hookrightarrow$
 \begin{large}Voir exercices dans l'annexe~\ref{exochap2}.\end{large}
 \end{flushright}
 
-\newpage
+
 
 \section{Algorithmes gloutons et de recherche locale}
 
@@ -1285,7 +1303,7 @@ localement la meilleure possible.
 
 \begin{exemple}[Chapitre 2] \textbf{Greedy\_SC} est un algorithme où le choix
 local consiste à prendre le sous-ensemble avec le meilleur ratio
-$\dfrac{poids}{\#\text{éléments que l'on couverait en prenant le sous-ensemble}
+$\scriptsize \dfrac{poids}{\#\text{éléments que l'on couverait en prenant le sous-ensemble}
 }$.
 \end{exemple}
 
@@ -1334,7 +1352,7 @@ Pour le \textbf{\titre{SC}} on peut prendre comme voisinage
 	\end{itemize}
 \end{enumerate}
 
-\newpage
+
 
 \subsection{Ordonnancement de tâches sur une seule machine}
 
@@ -1420,7 +1438,7 @@ $L_j$),
 \end{itemize}
 \end{pblm}
 
-\newpage
+
 
 \noindent Pour simplifier, pour tout $j$, on émet les hypothèses suivantes :
 \begin{enumerate}
@@ -1461,7 +1479,8 @@ deadlines négatives.
 \STATE $todo \leftarrow \{1,2,\ldots,n\}$
 \WHILE{$todo$ n'est pas vide}
 \IF{au moins une tâche est disponible ($r_j \leq t$ ?)}
-\STATE $j\leftarrow arg\min_j{d_j}$
+\STATE $j\leftarrow arg\min_j{d_j}$ \textit{// on prend la tâche avec la deadline
+	la plus proche}
 \STATE $t\leftarrow t+p_j$ \textit{// le temps d'exécution est ajouté au temps
 courant}
 \STATE $c_j \leftarrow t$ \textit{// le temps à laquelle la tâche est terminée
@@ -1484,7 +1503,7 @@ Soit $S$ un sous-ensemble de tâches, on définit
 \item $d(S) = \max_{j\in S} d_j$ \textit{(la deadline la + éloignée)}
 \item $L^*_{MAX} = OPT$.
 \end{itemize}
-\newpage
+
 \begin{lemme} Pour tout sous-ensemble de tâches $S$,
 $$ L^*_{MAX} \geq r(S) + p(S) - d(S) $$
 \begin{proof}
@@ -1510,6 +1529,10 @@ Si on prend $S = \{A,C\}$ :
 \end{figure}
 \end{exemple}
 Soit $j$ la dernière tâche traitée dans $S$ :
+ \begin{figure}[H]
+ 	\centering
+ 	\includegraphics[scale=0.6]{ordo.eps}
+ \end{figure}
 \begin{itemize}
 	\item[\textbf{(1)}] aucune tâche ne peut être exécutée avant $r(S)$,
 	\item[\textbf{(2)}] au total on a besoin de minimum $p(s)$ unité de temps.
@@ -1541,8 +1564,8 @@ période $[t,c_j[$, c'est-à-dire la situation suivante :
     \caption{Exemple général}
     \end{center}
 \end{figure}
-\newpage
-\noindent Sur l'intervalle $[t,c_j[$ et $S$ on sait :
+
+\noindent Sur l'intervalle $[t,c_j[$ et $S = \{j' \; \| \; c_{j'} \in [t, c_j] \cup \{j\}$, i.e., l'ensemble des tâches traitées dans $[t, c_j]$ on sait :
 \begin{itemize}
 \item[$\bigstar$] $r(S) = t$, en effet, juste avant $t$ il y a un repos
 (par définition), donc aucune tâche de $S$ n'était disponible avant $t$ (et donc
@@ -1553,7 +1576,7 @@ construction) $= c_j - r(S)$
 $$\Longrightarrow c_j = r(S)+p(S) \qquad\qquad \text{\textbf{(2)}}$$
 \end{itemize}
 Comme $d(S) < 0$ \textit{(par les hypothèses faites précédemment)}, par le
-lemme, on a $$L^*_{MAX} \geq r(S) + p(S) - d(S) \geq r(S)+p(S) = c_j\
+lemme, on a $$L^*_{MAX} \geq r(S) + p(S) - \underbrace{d(S)}_{<0} \geq r(S)+p(S) = c_j\
 \text{\textit{par (2)}}\qquad\qquad \text{\textbf{(3)}}$$
 
 Si on applique à nouveau le lemme avec $S = \{j\}$, on a :
@@ -1601,7 +1624,7 @@ mathématique, c'est-à-dire qu'elle réunit les 3 propriétés :
 \textit{(inégalité triangulaire)}
 \end{itemize}
 
-\newpage
+
 
 \begin{exemple}$ $\\
 
@@ -1634,6 +1657,7 @@ $d(i,S) = \min_{j\in S}(d_{ij})$, on a donc : $$rayon = \max_{i\in V} d(i,S)$$
 \STATE $j\leftarrow arg\max_{j\in V}d(j,S)$
 \STATE $S\leftarrow S \cup \{j\}$
 \ENDWHILE
+\STATE Calcule et retourne le rayon
 \end{algorithmic}
 \end{algorithm}
 
@@ -1665,7 +1689,7 @@ Dans ce cas, on fait $2$ fois moins bien. L'algorithme peut donc faire
 \indent (et en fait $2$ est le facteur d'approximation).
 \end{exemple}
 
-\newpage
+
 
 \begin{thm} \textbf{Greedy\_$k$\_center} est un algorithme de $2$-approximation
 pour le problème \textbf{$k$-center}.
@@ -1728,7 +1752,7 @@ $S$ soit adjacent à un sommet de $S$ ?
 \end{itemize}
 \end{pblm}
 
-\newpage
+
 
 \begin{exemple}$ $\\
 
@@ -1770,7 +1794,7 @@ solution ayant un rayon égal à 1 si une telle solution existe \textit{(car la 
 \end{proof}
 \end{thm}
 
-\newpage
+
 
 \subsection{Ordonnancement de tâches sur des machines identiques parallèles}
 
@@ -1823,7 +1847,7 @@ déplacer vers une machine qui se termine avant $c_l-p_l$. Appliquons l'algorith
 $\Longrightarrow$ \textbf{Optimum local.}
 \end{exemple}
 
-\newpage
+
 
 Notons $c^*_{MAX}$ la longueur d'un schedule optimal, on peut alors dire que ce schedule prendra au moins le temps d'exécution de la plus
 longue des tâches soumises :
@@ -1839,8 +1863,10 @@ Prouvons à présent que l'algorithme que nous avons montré sur l'exemple plus 
 \begin{proof}$ $\\
 \begin{enumerate}
 \item \textbf{L'algorithme s'exécute-t-il en temps polynomial ?}\\ (Voir preuve plus formelle dans livre de référence, chapitre 2) \\
-$\hookrightarrow$ Intuitivement : l'algorithme est polynomial car le nombre d'itérations est borné par une fonction polynomiale.
-
+$\hookrightarrow$ Intuitivement : l'algorithme est polynomial car le nombre d'itérations est borné par une fonction polynomiale en $m$ et $n$.
+\'A chaque itération, soit $C_{max}$ \textbf{diminue strictement}, soit il
+\textbf{reste égal}, i.e., il y avait au moins une autre machine qui se terminait en
+$C_{max}$, il y en a maintenant une de moins.
 \begin{figure}[h!]
     \begin{center}
     \includegraphics[scale=0.5]{spm3.pdf}
@@ -1862,7 +1888,7 @@ donc dans un cas comme suit (l'algorithme est terminé) :
     \end{center}
 \end{figure}
 
-\newpage
+
 Par le fait que l'algorithme est terminé, \textbf{toutes les machines sont au travail entre le temps $0$ et le début de la tâche $l$},
 c'est-à-dire jusqu'en $S_l = c_l-p_l$.
 
@@ -1923,7 +1949,7 @@ De cet algorithme on pourrait tirer un algorithme naïf exact pour ce problème,
 pour la liste et appliquer \textbf{ListScheduling} pour chacune de ces permutations et prendre celle qui donne la valeur la plus petite. Le
 problème est que cet algorithme a une complexité factorielle (si liste de $n$ éléments, $n!$ permutations).
 
-\newpage
+
 
 \begin{thm} L'algorithme \textbf{ListScheduling} est un algorithme de $2$-approximation pour \textbf{\titre{SPM}}.
 \begin{proof}$ $\\
@@ -1981,17 +2007,25 @@ Pour toute instance d'un \textbf{\titre{SPM}} telle que $p_1\geq p_2\geq \ldots 
 calcule un schedule optimal.
 \end{lemme}
 
-\newpage
+
 
 \begin{thm} L'algorithme \textbf{LPT} est un algorithme de $\frac 4 3$-approximation pour \textbf{\titre{SPM}}.
 \begin{proof}[par contradiction]$ $\\
-Supposons que le théorème est faux, c'est-à-dire qu'il existe une instance $p_1\geq p_2\geq \ldots \geq p_n$ qui est un contre exemple. \\
+Supposons que le théorème est faux, c'est-à-dire qu'il existe une instance $p_1\geq p_2\geq \ldots \geq p_n$ qui est un contre exemple, i.e., $C_{MAX} > \frac{4}{3} C^*_{MAX}$. \\
 Soit un shedule obtenu par l'application de \textbf{LPT} sur cette instance, on peut supposer que la dernière tâche de la liste, $p_n$, est
 également la tâche $l$ qui termine le schedule.
 \begin{itemize}
 \item[$\hookrightarrow$] Si on ne pouvait supposer cela, alors il existe un autre contre-exemple plus petit (= moins de tâches) qui
 respecte cette hypothèse. En effet, soit $l$ la dernière tâche du schedule, il suffit alors d'ignorer toutes les tâches $l+1$, $l+2$,
 $\ldots$ (on ne modifie pas la valeur de $c_{MAX}$ vu que c'est $l$ qui cause sa valeur).\\
+On différencie deux cas :
+\begin{itemize}
+	\item $C_{MAX}$ reste le même.
+	\item La valeur optimale de la nouvelle instance, i.e., OPT2 ne peut pas être
+	plus grande que la valeur optimale sur l'instance originale (OPT1). \\
+	$\implies OPT2 \leq OPT1$. Donc, on a $\frac{4}{3} < \frac{C_{MAX}}{OPT1} \leq
+	\frac{C_{MAX}}{OPT2}$
+\end{itemize}
 	 $\rightarrow l$ est maintenant la tâche la plus petite. \\
 	 \textit{(ceci est vrai car $n>m$)}
 	 \begin{exemple}$ $
@@ -2017,8 +2051,8 @@ $\ldots$ (on ne modifie pas la valeur de $c_{MAX}$ vu que c'est $l$ qui cause sa
 Et donc on a :
 \begin{eqnarray}
 \nonumber c_{MAX} & = & S_n + p_n \\
-\nonumber        &\leq & c^*{MAX} + p_n \\
-\nonumber        & < & c^*{MAX} + \frac{c^*{MAX}}{3} = \frac{4}{3}c^*{MAX}
+\nonumber        &\leq & c^*_{MAX} + p_n \\
+\nonumber        & < & c^*_{MAX} + \frac{c^*_{MAX}}{3} = \frac{4}{3}c^*_{MAX}
 \end{eqnarray}
 \item[b)] si $p_n > \frac{c^*_{MAX}}{3}$, par le lemme précédent, \textbf{LPT} donne la solution optimale.
 \end{enumerate}
@@ -2026,7 +2060,7 @@ Et donc on a :
 \end{proof}
 \end{thm}
 
-\newpage
+
 
 \subsection{Traveling Saleman Problem (TSP)}
 
@@ -2101,7 +2135,8 @@ ceci :
 \end{itemize}
 La valeur optimale du \textbf{\titre{TSP}} sur cette instance devrait être égal à $n$, cela signifiant qu'il existe un cycle hamiltonien.
 Sinon la solution optimale du \textbf{\titre{TSP}} $\geq (n-1)+(n+2) = 2n+1$ vu qu'il faut au moins sélectionner une arête qui n'existait
-pas dans l'instance du cycle. \\
+pas dans l'instance du cycle. En effet, si $TSP < 2n+1$, alors on a affaire à un
+chemin Hamiltonien. \\
 
 Cette remarque nous dit qu'avec un algorithme de $2$-approximation pour le \textbf{\titre{TSP}}, on pourrait résoudre un problème
 \textbf{NP-complet} ! Ce facteur $2$ vient du cout que l'on a placé pour les arêtes inexistantes. On peut donc le faire croître
@@ -2148,7 +2183,7 @@ Voici cet algorithme, il est polynomial.
 \WHILE{$reste \neq \emptyset$}
 \STATE $i,j \leftarrow arg\min_{i\not\in reste,j\in reste} C_{ij}$
 \STATE insérer $j$ dans $tour$ après $i$
-\STATE $reste\leftarrow reste\{j\}$
+\STATE $reste\leftarrow reste\setminus\{j\}$
 \ENDWHILE
 \end{algorithmic}
 \end{algorithm}
@@ -2238,10 +2273,10 @@ soit exactement les mêmes que \textbf{NearestAddition}.
 \begin{lemme}\label{optgeqmst}
 Pour toute instance du \textbf{\titre{TSP}} métrique, $OPT \geq \titre{\mathbf{MST}}$.
 \begin{proof}
-Soit $n\geq 2$, une instance de TSP métrique et son tour optimal :
+Soit $n\geq 2$, une instance de TSP métrique et son tour optimal, avec $w = OPT - 1 \text{arête}$ :
 \begin{figure}[h!]
     \begin{center}
-    \includegraphics[scale=0.42]{optTSP.pdf}
+    \includegraphics[scale=0.6]{optTSP.eps}
     \caption{Instance \textbf{\titre{TSP}} métrique et son tour optimal}
     \end{center}
 \end{figure}
@@ -2266,7 +2301,7 @@ $|S_k|=k$,
 $\hookrightarrow$ Quel est le coût maximimal du tour construit par \textbf{NearestAdd} ?
 \begin{itemize}
 \item[$\rightarrow$] le premier tour sur $i_2$ et $j_2$ = $2C_{i_2j_2}$ (aller-retour).
-\item[$\rightarrow$] Soit une itération où $j$ est inséré entre $i$ et $k$. La différence de coût est donnée par :
+\item[$\rightarrow$] Soit une itération où $j$ est inséré entre $i$ et $k$. La différence de coût, qui correspond à la valeur à ajouter au coût courrant, est donnée par :
 $$C_{ij}+C_{jk}-C_{ik}\quad (\star )$$
 \begin{center}\textit{(ajout des 2 nouvelles arêtes, suppression de l'ancienne)}\end{center}
 Par l'inégalité triangulaire, on sait que $C_{jk}\leq C_{ji} + C_{ik}$ et donc que
@@ -2296,7 +2331,7 @@ arêtes (ici $2$) entre $2$ sommets.
     \end{center}
 \end{figure}
 
-\noindent Ce multigraphe est \textbf{Eulérien}, c'est-à-dire qu'il existe une chemin empruntant chaque arête 1 et une seule fois.\\
+\noindent Ce multigraphe est \textbf{Eulérien}, c'est-à-dire qu'il existe un chemin empruntant chaque arête 1 et une seule fois.\\
 Essayons de trouver un tour sur ce graphe (en rouge) :
 \begin{itemize}
 \item on part de $1$ et on va en $2$, de $2$ à $3$, de $3$ à $4$,
@@ -2305,7 +2340,7 @@ Essayons de trouver un tour sur ce graphe (en rouge) :
 \end{itemize}
 \end{exemple}
 
-\newpage
+
 
 Revenons sur la théorie des \textit{cycles Eulériens}, via le problème de \textbf{Konïgsberg}.
 \begin{exemple}$ $ \\
@@ -2326,7 +2361,7 @@ correspond à une île/rive et chaque pont est une arête.
 Un graphe est \textbf{eulérien} si et seulement si tous les sommets du graphes ont un degré pair et que le graphe est connexe.
 \end{de}
 
-\noindent Le problème Eulérien $\in \mathcal{P}$, on peut donc l'utiliser pour approximer \textbf{\titre{TSP}}.\\
+Le problème Eulérien $\in \mathcal{P}$, on peut donc l'utiliser pour approximer \textbf{\titre{TSP}}.\\
 Pour trouver un ``bon'' tour pour le \textbf{\titre{TSP}} nous allons :
 \begin{enumerate}
 \item[a)] calculer un \textbf{\titre{MST}},
@@ -2420,7 +2455,7 @@ $7$ & $1$ \\
 \end{figure}
 \end{exemple}
 
-\newpage
+
 
 Supposons qu'on groupe les sommets de degrés impairs par paires (ce qui est possible car $|0| = 2k$) : $(i_1,i_2)$, $(i_3,i_4)$ ...
 $(i_{2k-1},i_{2k})$. On obtient ainsi un \textbf{perfect matching}, c'est-à-dire un ensemble d'arêtes non incidentes entre elles qui
@@ -2523,7 +2558,7 @@ pour le \textbf{\titre{TSP}} métrique.
 $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exoChap3}.\end{large}
 \end{flushright}
 
-\newpage
+
 
 \section{Programmation dynamique et arrondissement (rounding) de données}
 
@@ -2659,7 +2694,7 @@ les mêmes objets) de $1$ à $j$ :
 \item il y a beaucoup de redondance dans la recherche exhaustive, d'où l'interêt d'avoir des données entières.
 \end{itemize}
 
-\newpage
+
 
 \subsubsection{Programmation dynamique pour \titre{KP} (1ère version)}
 \begin{itemize}
@@ -2681,7 +2716,7 @@ Nous allons utiliser les notations suivantes,
 \nonumber 		 & = & \infty \text{ sinon}
 \end{eqnarray}
 
-\newpage
+
 
 Le tableau $A$ est donc de la forme :
 \begin{center}\begin{tabular}{c|cccccc}
@@ -2896,7 +2931,7 @@ particulier)} \\
 $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exoChap4}.\end{large}
 \end{flushright}
 
-\newpage
+
 
 \appendix
 
@@ -2964,7 +2999,7 @@ Et donc,  $$\boxed{\frac{SOL}{OPT} \sim \frac{k!\log{k}}{k!} \sim \log{k}}$$
 Peut-être, mais on a pas prouvé que c'était le cas ni que c'était pas le cas, on a juste vu que dans ce cas là on avait un ratio de
 l'ordre de $\log{k}$.
 
-\newpage
+
 
 \section{Annexe B : Exercices chapitre 2}\label{exochap2}
 
@@ -3052,7 +3087,7 @@ $\min \sum_{v\in V} (x_v)$\\
 
 \begin{center}\includepdf[pages={1-10},offset=60 0]{exoChap2.pdf}\end{center}
 
-\newpage
+
 
 \section{Annexe C : Exercices chapitre 3}\label{exoChap3}
 
@@ -3065,7 +3100,7 @@ $(p_j,r_j,d_j) =$
 \end{enumerate}
 L'algorithme donne la solution optimale \textit{(ordonnancement \textbf{ABC} mais c'est un coup de chance)}.
 
-\newpage
+
 
 \section{Annexe D : Exercices chapitre 4}\label{exoChap4}
 
@@ -3073,4 +3108,4 @@ L'algorithme donne la solution optimale \textit{(ordonnancement \textbf{ABC} mai
 
 \begin{center}\includepdf[pages={1-10},offset=60 0]{exoChap4.pdf}\end{center}
 
-\end{sffamily}\end{document}
+\end{document}

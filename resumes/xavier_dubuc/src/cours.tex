@@ -1563,11 +1563,11 @@ période $[t,c_j[$, c'est-à-dire la situation suivante :
     \end{center}
 \end{figure}
 
-\noindent Sur l'intervalle $[t,c_j[$ et $S = \{j' \; \| \; c_{j'} \in [t, c_j] \cup \{j\}$, i.e., l'ensemble des tâches traitées dans $[t, c_j]$ on sait :
+\noindent Sur l'intervalle $[t,c_j[$ et $S = \{j' \; | \; c_{j'} \in [t, c_j[ \} \cup \{j\}$, i.e., l'ensemble des tâches traitées dans $[t, c_j[$ on sait :
 \begin{itemize}
 \item[$\bigstar$] $r(S) = t$, en effet, juste avant $t$ il y a un repos
 (par définition), donc aucune tâche de $S$ n'était disponible avant $t$ (et donc
-tous les $r_j$ de $S$ sont $\geq t$ (au moins une est égale à $t$, par
+tous les $r_j$ de $S$ sont $\geq t$, sauf au moins une qui est égale à $t$, par
 définition de $t$ toujours).
 \item[$\bigstar$] $p(S) = c_j - t$ (vu qu'il n'y a pas de pause par
 construction) $= c_j - r(S)$

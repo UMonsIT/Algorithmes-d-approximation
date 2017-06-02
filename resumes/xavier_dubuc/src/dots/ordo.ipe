@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70206" creator="Ipe 7.2.6">
-<info created="D:20170601152128" modified="D:20170602105307"/>
+<info created="D:20170601145122" modified="D:20170602112644"/>
+<preamble>\usepackage{amsmath}
+</preamble>
 <ipestyle name="basic">
 <symbol name="arrow/arc(spx)">
 <path stroke="sym-stroke" fill="sym-stroke" pen="sym-pen">
@@ -255,97 +257,81 @@ h
 <layer name="alpha"/>
 <view layers="alpha" active="alpha"/>
 <path layer="alpha" stroke="black">
-16 0 0 16 80 784 e
+64 752 m
+64 720 l
+192 720 l
+192 752 l
+h
 </path>
 <path stroke="black">
-16 0 0 16 48 720 e
+64 704 m
+64 672 l
+192 672 l
+192 704 l
+h
 </path>
 <path stroke="black">
-16 0 0 16 80 656 e
+64 784 m
+64 640 l
+</path>
+<path stroke="red">
+224 784 m
+224 640 l
+224 640 l
+224 640 l
 </path>
 <path stroke="black">
-16 0 0 16 112 720 e
+192 704 m
+192 672 l
+272 672 l
+272 704 l
+h
 </path>
-<path matrix="1 0 0 1 160 0" stroke="black">
-16 0 0 16 80 784 e
-</path>
-<path matrix="1 0 0 1 160 0" stroke="black">
-16 0 0 16 48 720 e
-</path>
-<path matrix="1 0 0 1 160 0" stroke="black">
-16 0 0 16 80 656 e
-</path>
-<path matrix="1 0 0 1 160 0" stroke="black">
-16 0 0 16 112 720 e
-</path>
-<path matrix="1 0 0 1 320 0" stroke="black">
-16 0 0 16 80 784 e
-</path>
-<path matrix="1 0 0 1 320 0" stroke="black">
-16 0 0 16 48 720 e
-</path>
-<path matrix="1 0 0 1 320 0" stroke="black">
-16 0 0 16 80 656 e
-</path>
-<path matrix="1 0 0 1 320 0" stroke="black">
-16 0 0 16 112 720 e
-</path>
-<text matrix="1 0 0 1 -3.09276 -2.05999" transformations="translations" pos="78.129 782.278" stroke="black" type="label" width="8.849" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">a</text>
-<text matrix="1 0 0 1 -0.0875703 -2.8648" transformations="translations" pos="44.8384 717.337" stroke="black" type="label" width="7.167" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">b</text>
-<text transformations="translations" pos="75.8507 653.098" stroke="black" type="label" width="7.255" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">c</text>
-<text matrix="1 0 0 1 -1.63603 -2.76611" transformations="translations" pos="109.303 717.208" stroke="black" type="label" width="8.759" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">d</text>
-<text matrix="1 0 0 1 157.229 -1.48816" transformations="translations" pos="78.129 782.278" stroke="black" type="label" width="8.849" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">a</text>
-<text matrix="1 0 0 1 160.234 -2.29297" transformations="translations" pos="44.8384 717.337" stroke="black" type="label" width="7.167" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">b</text>
-<text matrix="1 0 0 1 160.321 0.571827" transformations="translations" pos="75.8507 653.098" stroke="black" type="label" width="7.255" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">c</text>
-<text matrix="1 0 0 1 158.685 -2.19428" transformations="translations" pos="109.303 717.208" stroke="black" type="label" width="8.759" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">d</text>
-<text matrix="1 0 0 1 317.384 -1.63705" transformations="translations" pos="78.129 782.278" stroke="black" type="label" width="8.849" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">a</text>
-<text matrix="1 0 0 1 320.389 -2.44186" transformations="translations" pos="44.8384 717.337" stroke="black" type="label" width="7.167" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">b</text>
-<text matrix="1 0 0 1 320.477 0.422942" transformations="translations" pos="75.8507 653.098" stroke="black" type="label" width="7.255" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">c</text>
-<text matrix="1 0 0 1 318.841 -2.34317" transformations="translations" pos="109.303 717.208" stroke="black" type="label" width="8.759" height="11.955" depth="0" valign="baseline" size="LARGE" style="math">d</text>
-<path stroke="black">
-55.7613 733.991 m
-70.5568 771.084 l
+<path stroke="black" fill="lightgreen" dash="dashed" tiling="falling">
+224 704 m
+224 672 l
+272 672 l
+272 704 l
+h
 </path>
 <path stroke="black">
-91.4922 772.868 m
-101.625 732.18 l
+256 784 m
+256.1 655.224 l
+256 656 l
+256 656 l
 </path>
-<path stroke="black">
-57.636 707.227 m
-68.502 667.126 l
+<path stroke="black" fill="lightgreen" tiling="falling">
+240 752 m
+240 720 l
+320 720 l
+320 752 l
+h
 </path>
-<path stroke="black">
-101.289 708.114 m
-91.6098 667.01 l
+<text matrix="1 0 0 1 8 0" transformations="translations" pos="208 800" stroke="red" type="label" width="12.47" height="9.962" depth="4.09" valign="baseline" size="Large" style="math">d_j</text>
+<text transformations="translations" pos="248 800" stroke="black" type="label" width="12.467" height="9.965" depth="2.15" valign="baseline" size="Large" style="math">d_s</text>
+<text transformations="translations" pos="240 688" stroke="black" type="label" width="6.619" height="9.405" depth="2.79" valign="baseline" size="Large" style="math">j</text>
+<text transformations="translations" pos="272 736" stroke="black" type="label" width="6.619" height="9.405" depth="2.79" valign="baseline" size="Large" style="math">j</text>
+<text matrix="1 0 0 1 -48.3386 -0.379779" transformations="translations" pos="304 656" stroke="black" type="label" width="17.933" height="-0.013" depth="14.16" valign="baseline" style="math">\underbrace{ }_{\text{$ $}}</text>
+<text matrix="1 0 0 1 -57.3216 -19.0062" transformations="translations" pos="312 644" stroke="black" type="label" width="82.618" height="7.473" depth="2.49" valign="baseline" style="math">r(S) + p(S) - d(S)</text>
+<text transformations="translations" pos="56 800" stroke="black" type="label" width="27.12" height="10.756" depth="3.59" valign="baseline" size="Large" style="math">r(S)</text>
+<text transformations="translations" pos="357.709 734.755" stroke="black" type="label" width="54.047" height="6.918" depth="0" valign="baseline">avec ``trous&quot;</text>
+<text transformations="translations" pos="357.109 688.174" stroke="black" type="label" width="53.881" height="6.918" depth="0" valign="baseline">sans ``trous&quot;</text>
+<text matrix="1 0 0 1 0.215786 6.63996" transformations="translations" pos="255.479 630.474" stroke="black" type="label" width="71.178" height="6.918" depth="0" valign="baseline">retard minimum</text>
+<path fill="lightgreen" tiling="falling">
+224 752 m
+224 720 l
+240 720 l
+240 752 l
+h
 </path>
-<path stroke="black">
-215.99 706.138 m
-229.509 668.08 l
+<path matrix="1 0 0 1 4.58089 -6.029" fill="lightgreen" tiling="falling">
+352 816 m
+352 800 l
+384 800 l
+384 816 l
+h
 </path>
-<path stroke="black">
-249.814 668.637 m
-260.909 708.468 l
-</path>
-<path stroke="black">
-218.394 732.164 m
-229.233 772.165 l
-</path>
-<path stroke="black">
-379.003 731.616 m
-388.754 772.619 l
-</path>
-<path stroke="black">
-383.997 719.702 m
-416.003 719.714 l
-</path>
-<path stroke="black">
-377.591 707.193 m
-388.511 667.136 l
-</path>
-<text matrix="1 0 0 1 -4.87438 -4.79507" transformations="translations" pos="65.2626 623.333" stroke="black" type="label" width="38.778" height="11.764" depth="0" valign="baseline" size="LARGE" style="math">OPT</text>
-<text matrix="1 0 0 1 -3.21594 -6.43188" transformations="translations" pos="232.735 625.845" stroke="black" type="label" width="12.513" height="7.412" depth="0" valign="baseline" size="LARGE" style="math">w</text>
-<text matrix="1 0 0 1 -13.3761 -11.6536" transformations="translations" pos="392.755 626.045" stroke="black" type="label" width="41.696" height="11.764" depth="0" valign="baseline" size="LARGE" style="math">MST</text>
-<text matrix="1 0 0 1 6.12903 -1.26546" transformations="translations" pos="145.666 718.764" stroke="black" type="label" width="13.39" height="10.949" depth="2.34" valign="baseline" size="LARGE" style="math">\geq</text>
-<text matrix="1 0 0 1 1.29431 -1.19336" transformations="translations" pos="311.648 718.324" stroke="black" type="label" width="13.39" height="10.949" depth="2.34" valign="baseline" size="LARGE" style="math">\geq</text>
+<text matrix="1 0 0 1 4.4327 -8.71462" transformations="translations" pos="387.459 807.992" stroke="black" type="label" width="58.969" height="6.926" depth="1.93" valign="baseline">= retard de $j$</text>
+<text matrix="1 0 0 1 0.803346 -3.15879" transformations="translations" pos="356.482 727.205" stroke="black" type="label" width="54.33" height="6.919" depth="2.85" valign="baseline" style="math">L_j = c_j - d_j</text>
 </page>
 </ipe>

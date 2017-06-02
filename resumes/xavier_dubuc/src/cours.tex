@@ -2552,9 +2552,9 @@ Ce facteur d'approximation est serré, nous allons le montrer sur l'exemple suiv
 Si le tour ne prend que les arêtes vertes, on obtient la solution optimale dont le coût est :
 $$(n-1) + 4(1+\epsilon) + (n-2) = 2n - 1 + 4\epsilon$$
 
-Seulement, si l'arbre couvrant donné par l'algorithme est toutes les arêtes rouges (+ les 2 arêtes vertes extérieures), il n'y a que $2$
+Si l'arbre couvrant donné par l'algorithme est toutes les arêtes rouges (+ les 2 arêtes vertes extérieures), il n'y a que $2$
 sommets de degrés impairs : $a_1$ et $a_{n+1}$. Le \textbf{perfect matching} va donc devoir les relier, on obtient alors une solution dont
-la valeur est : $$ 2(1+\epsilon) + 2(n-1) +      n       = 3n+2\epsilon $$
+la valeur est : $$ \underbrace{2(1+\epsilon) + 2(n-1)}_{MST} +      \underbrace{n}_{PM}       = 3n+2\epsilon $$
 
 Le ratio est donc : $$\dfrac{3n+2\epsilon}{2n+4\epsilon-1} \to_{n\to\infty} \dfrac{3}{2}$$
 \end{exemple}
@@ -2690,14 +2690,33 @@ les mêmes objets) de $1$ à $j$ :
 \begin{itemize}
 \item[si] $taille(P) = taille(Q)$
 	\begin{itemize}
-	\item[si] $profit(P) \geq profit(Q)$ alors calculer $P$
-	\item[sinon] calculer $Q$
+	\item[si] $profit(P) \geq profit(Q)$
+	\begin{itemize}
+		\item[alors] calculer $P$
+	\end{itemize}
+	\item[sinon] $ $
+		\begin{itemize}
+			\item[calculer] $Q$
+		\end{itemize}
 	\end{itemize}
 \item[sinon si] $profit(P) = profit(Q)$
 	\begin{itemize}
-	\item[si] $taille(P) > taille (Q)$ alors calculer $Q$
-	\item[sinon] calculer $P$ \\
+	\item[si] $taille(P) > taille (Q)$
+		\begin{itemize}
+			\item[alors] calculer $Q$
+		\end{itemize}
+	\item[sinon]$ $
+		\begin{itemize}
+			\item[calculer] $P$
+		\end{itemize}
 	\end{itemize}
+\end{itemize}
+
+\textbf{Intuitivement} :
+\begin{itemize}
+	\item[Si] la taille est égale, alors prendre le sous-problème qui offre le
+		meilleur profit.
+	\item[Sinon], si le profit est égal, alors prendre le sous-problème le plus léger.
 \end{itemize}
 
 \noindent Pour \textbf{\titre{KP}} :
@@ -2786,7 +2805,7 @@ En unaire : $(7)_{10} = (1111111)_1$, et dans ce cas $size = O(V)$ et donc $O(n\
 \subsubsection{Variation du programme dynamique}
 
 Nous allons utiliser un tableau de listes de paires : \\
-$A(j)$ pour $j = 1,...,n$ contient une liste de paires $(t,w)$ où une paire signifie qu'il existe un sous ensemble $S\subseteq I$ utilisant
+$A(j)$ pour $j = 1,...,n$ contient une liste de paires $(t,w)$ où une paire signifie qu'il existe un sous ensemble $S\subseteq \{1, \dots, j\} \subseteq I$ en considérant
 les $j$ premiers objets avec une \textbf{taille} $t$ et un \textbf{profit} $w$. \\
 En d'autres mots si $(t,w)$ est dans la liste $A(j)$, alors il existe $S\subseteq \{1,2,...,j\}$ tel que $\sum_{j\in S} s_i = t \leq B$ et
 $\sum_{i\in S} v_i = w$.
@@ -2802,9 +2821,6 @@ Nous allons nous assurer que dans une liste, aucune paire n'en domine une autre.
 \nonumber t_1 & < & t_2 < \ldots < t_k \\
 \nonumber w_1 & < & w_2 < \ldots < w_k
 \end{eqnarray}
-$ $\\
-$ $\\
-$ $\\
 
 \noindent Comme pour tout $i$, $v_i$ et $s_i$ sont des entiers :
 \begin{enumerate}
@@ -2916,14 +2932,22 @@ $\Longrightarrow$ Temps d'exécution $O(n\min(B,V)) = O\left(n^3\times \left(\df
 
 \item[b)]Le facteur d'approximation est de $1-\epsilon$, c'est-à-dire $APP \geq (1-\epsilon) OPT$.\\
 Soit $S$ l'ensemble des objets utilisés dans la solution approchée (c'est-à-dire celui retourné par \textbf{FPAS\_KP}).\\
-Soit $O$ l'ensemble optimal d'objets, on sait déjà que $M\leq OPT$, de plus, $\mu v'_i \leq_{(2)} v_i \leq_{(3)} \mu (v'_i+1)$\\
+Soit $O$ l'ensemble optimal d'objets, on sait déjà que $M\leq OPT$, de plus, on a que :
+\begin{flalign*}
+	\notag v'_i &= \lfloor \frac{v_i}{\mu} \rfloor \\
+	\tag{2} \text{donc, } v'_i &\leq \frac{v_i}{\mu} \\
+	\tag{3} \text{et } v'_{i} + 1 &\geq \frac{v_i}{\mu}
+\end{flalign*}
+Donc, $\mu v'_i \leq_{(2)} v_i \leq_{(3)} \mu (v'_i+1)$.\\
 $\Longrightarrow$ par \textbf{(3)}, $\mu v_i' \geq v_i-\mu$ \textbf{(4)}\\
 Dès lors,
 \begin{eqnarray}
 \nonumber APP & = & \sum_{i\in S} v_i \\
 \nonumber 	& \geq & \sum_{i\in S}\mu v_i' \text{ (par \textbf{(2)})}\\
-\nonumber 	& \geq & \sum_{i\in O}\mu v_i' \text{ (parce que $S$ est optimal sur les $v_i'$ et $O$ reste réalisable sur les $v_i'$ et vu que
-\nonumber c'est une maximisation,}\\ \nonumber & & \text{la valeur de $S$ est la plus grande et donc plus grande que celle de $O$ en
+\nonumber 	& \geq & \sum_{i\in O}\mu v_i' \text{ (parce que $S$ est optimal sur les $v_i'$ et $O$ reste réalisable sur les }\\
+\nonumber & & \quad \quad \text{ $v_i'$ et vu que c'est une maximisation, la valeur de $S$ est la plus }\\
+\nonumber & & \quad \quad \text{ grande et donc plus grande que celle de $O$ en
+%\nonumber c'est une maximisation,}\\ \nonumber & & \text{la valeur de $S$ est la plus grande et donc plus grande que celle de $O$ en
 particulier)} \\
 \nonumber 	& \geq & \sum_{i\in O} (v_i-\mu) \text{ par \textbf{(4)}}\\
 \nonumber   &  =  & \sum_{i\in O} (v_i) - |O|\mu \\

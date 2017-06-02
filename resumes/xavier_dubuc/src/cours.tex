@@ -625,8 +625,8 @@ $\bigcup\limits_{j\in I}{S_j} = E$.
 
 Soit $C \in I_{SC}$, une instance de SC où $E = \{1, 2, 3, 4, 5, 6\}$ et $\sigma = \{S_1, S_2, S_3, S_4, S_5\} \subseteq \mathcal{P}(E)$ (c.f. figure \ref{scex}).\\
 $Sol^*_{SC}(C) = \{3,4,5\}$, i.e., la couverture minimale est $\{S_3, S_4, S_5 \}$.\\
-Si $w_j = 1, \; \forall j$ \textit{(version non-pondérée du problème)},
-alors $Sol^*_{SC}{C} = \{1,2\}$.
+Si $w_j = 1 \; \forall j$ \textit{(version non-pondérée du problème)},
+alors $Sol^*_{SC}(C) = \{1,2\}$.
 
 \subsection{Programmation linéaire et Set Cover}
 
@@ -644,7 +644,7 @@ booléenne sur certaines variables.\\
 \end{de}
 
 \begin{propriete}
-Un \textbf{\titre{PL}} où toutes les variables sont continues peut être résolus
+Un \textbf{\titre{PL}} où toutes les variables sont continues peut être résolu
 en temps polynomial (non pas via le simplexe mais via la méthode des points
 intérieurs ou via l'algorithme ellipsoïdale par exemple (il en existe
 d'autres)).\\
@@ -695,7 +695,7 @@ alors on a $\boxed{Z^*_{LP} \leq Z^*_{IP} = OPT}$. \\
 Le problème relaxé \textbf{LP({**})} s'exprime donc de la façon suivante :
 
 	\[ \min \;  \sum_{j=1}^m w_jx_j \]
-	\[ \textbf{s.l.c.}  \sum_{j:e_i \in S_j} x_j \geq 1 \]
+	\[ \textbf{s.l.c.}  \sum_{j:e_i \in S_j} x_j \geq 1 \quad \forall i \in \{1, \dots, n \}\]
 
 \begin{exemple}$ $\\
 $\max\ x_1+x_2$ \\
@@ -813,12 +813,13 @@ $$ \sum_{j\in I} w_j = APP \leq f * OPT  $$
 Par construction, $1 \leq f*x^*_j,\ \forall j \in I$. \textbf{(**)}\\
 Ensuite,
 \begin{eqnarray}
-\sum_{j\in I} (w_j) & \leq & \sum_{j=1}^m (w_j.1) \\
-				    & \leq & \sum_{j=1}^m w_j . f . x^*_j
+\sum_{j\in I} (w_j)% & \leq & \sum_{j=1}^m (w_j.1) \\
+				    & \leq & \sum_{j \in I} w_j . f . x^*_j
                     \text{ (par \textbf{(**)})} \\
+				    & \leq & \sum_{j = 1}^m w_j . f . x^*_j \\
 				    &   =  & f \sum_{j=1}^m w_j . x^*_j \\
 				%	&   =  & \text{($f \times$ valeur de la fonction objective pour la solution optimale du LP)} \\
-					&   =  & f \cdot Z_{LP}^* \\
+					&   =  & f \cdot \underbrace{Z_{LP}^*}_{\leq OPT} \\
 					& \leq & f \cdot OPT
 \end{eqnarray}
 \cqfd
@@ -838,7 +839,7 @@ $\frac{APP}{OPT}\leq \alpha$, avec $APP = \sum_{j \in I} w_j$ et $OPT \geq Z^*_{
 d'approximation que $f$ bien qu'il ne soit calculable qu'à partir de la solution
 obtenue via la résolution du problème relaxé ($Z^*_{LP}$).
 
-%\vspace{4em}
+\vspace{4em}
 
 \begin{exemple}[Voir feuilles des résultats obtenus avec CPLEX]$ $\\
 \textbf{\titre{SC}} : $\alpha = \frac{9}{9} = 1$ \\
@@ -1529,7 +1530,7 @@ Si on prend $S = \{A,C\}$ :
 Soit $j$ la dernière tâche traitée dans $S$ :
  \begin{figure}[H]
  	\centering
- 	\includegraphics[scale=0.6]{ordo.eps}
+ 	\includegraphics{ordo.eps}
  \end{figure}
 \begin{itemize}
 	\item[\textbf{(1)}] aucune tâche ne peut être exécutée avant $r(S)$,
@@ -2263,8 +2264,10 @@ l'algorithme de \textbf{Prim} est un algorithme exact polynomial permettant de l
 
 \begin{exemple}
 Appliquons l'algorithme de \textbf{Prim} sur l'algorithme de la Belgique.
-Il va sélectionner les arêtes :
-$$\text{(Ostende,BXL), (Anvers,BXL), (BXL,Charleroi), (Charleroi,Mons), (Charleroi,Liège), (Liège,Arlon)}$$
+Il va sélectionner les arêtes :\\
+\begin{center}
+(Ostende,BXL), (Anvers,BXL), (BXL,Charleroi), (Charleroi,Mons), (Charleroi,Liège), (Liège,Arlon)
+\end{center}
 soit exactement les mêmes que \textbf{NearestAddition}.
 \end{exemple}
 
@@ -2299,11 +2302,23 @@ $|S_k|=k$,
 $\hookrightarrow$ Quel est le coût maximimal du tour construit par \textbf{NearestAdd} ?
 \begin{itemize}
 \item[$\rightarrow$] le premier tour sur $i_2$ et $j_2$ = $2C_{i_2j_2}$ (aller-retour).
+\begin{figure}[H]
+	\centering
+	\includegraphics{neartestAdd1}
+\end{figure}
 \item[$\rightarrow$] Soit une itération où $j$ est inséré entre $i$ et $k$. La différence de coût, qui correspond à la valeur à ajouter au coût courrant, est donnée par :
 $$C_{ij}+C_{jk}-C_{ik}\quad (\star )$$
+\begin{figure}[H]
+	\centering
+	\includegraphics{neartestAdd2}
+\end{figure}
 \begin{center}\textit{(ajout des 2 nouvelles arêtes, suppression de l'ancienne)}\end{center}
 Par l'inégalité triangulaire, on sait que $C_{jk}\leq C_{ji} + C_{ik}$ et donc que
 $$C_{jk}-C_{ik} \leq C_{ij}\quad (\star\star )$$
+\begin{figure}[H]
+	\centering
+	\includegraphics{neartestAdd3}
+\end{figure}
 
 Le coût supplémentaire de cette itération est alors : $C_{ij}+C_{jk}-C_{ik}$ qui est borné par $2C_{ij}$ par $(\star\star )$. \\
 \end{itemize}

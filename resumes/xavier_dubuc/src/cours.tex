@@ -2549,7 +2549,7 @@ Ce facteur d'approximation est serré, nous allons le montrer sur l'exemple suiv
 \end{figure}
 
 Si le tour ne prend que les arêtes vertes, on obtient la solution optimale dont le coût est :
-$$(n-1) + 4(1+\epsilon) + (n-2) = 2n - 1 + 4\epsilon$$
+$$(n-1) + 4(1+\epsilon) + (n-2) = 2n + 1 + 4\epsilon$$
 
 Si l'arbre couvrant donné par l'algorithme est toutes les arêtes rouges (+ les 2 arêtes vertes extérieures), il n'y a que $2$
 sommets de degrés impairs : $a_1$ et $a_{n+1}$. Le \textbf{perfect matching} va donc devoir les relier, on obtient alors une solution dont
@@ -2826,7 +2826,7 @@ Nous allons nous assurer que dans une liste, aucune paire n'en domine une autre.
 \item[a)] dans chaque liste, il y a au plus $B+1$ paires ($+1$ car il y a la taille $0$)
 \item[b)] dans chaque liste, il y a au plus $V+1$ paires ($+1$ car il y a le profit $0$)
 \item[c)] pour tout sous-ensemble $S\subseteq \{1,...,j\}$ réalisable (i.e $\sum_{i\in S}(s_i) \leq B$), la liste $A(j)$ contient une paire
-$(t,w)$ qui donne la paire ($\sum_{i\in S}(s_i)$,$\sum_{i\in S}(v_i)$).
+$(t,w)$ qui domine la paire ($\sum_{i\in S}(s_i)$,$\sum_{i\in S}(v_i)$).
 \end{enumerate}
 
 \begin{algorithm}[h!]

@@ -315,7 +315,7 @@ $v_j \in U$.
 
 \begin{exemple}
 Graphe étoile à $n$ sommets, $S_n$.\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{g1.pdf}
     \caption{$S_n\ (n=5)$, exemple pour VC}
@@ -327,7 +327,7 @@ Graphe étoile à $n$ sommets, $S_n$.\\
 \end{exemple}
 \begin{exemple}
 Graphe complet à $n$ sommets, $K_n$.\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{g2.pdf}
     \caption{$K_n\ (n=4)$, exemple pour VC}
@@ -344,7 +344,7 @@ Graphe complet à $n$ sommets, $K_n$.\\
 
 \begin{exemple}
 Chemin à $n$ sommets, $P_n$.\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{pn.pdf}
     \caption{$P_n\ (n=5)$, exemple pour VC}
@@ -357,7 +357,7 @@ Chemin à $n$ sommets, $P_n$.\\
 
 \begin{exemple}
 Cycle à $n$ sommets, $C_n$.\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{cn.pdf}
     \caption{$C_n\ (n=5)$, exemple pour VC}
@@ -371,7 +371,7 @@ Cycle à $n$ sommets, $C_n$.\\
 
 \begin{exemple}
 Graphe biparti complet à $n+m$ sommets, $K_{n,m}$.\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{knm.pdf}
     \caption{$K_{n,m}\ (n=5,\ m=3)$, exemple pour VC}
@@ -614,7 +614,7 @@ $\bigcup\limits_{j\in I}{S_j} = E$.
 \end{itemize}
 \end{pblm}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{inst_sc.pdf}
     \caption{Exemple d'instance de \titre{SC}}
@@ -662,7 +662,7 @@ n'est plus à la valeur booléenne $0$).
 
 Grâce à cette idée de relaxation on peut dégager un algorithme qui semble être
 un algorithme d'approximation pour résoudre un problème \textbf{IP(*)} :
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{RelaxationApprox}
 \begin{algorithmic}[1]
 \STATE Résoudre le problème relaxé (\textbf{LP(**)})
@@ -702,7 +702,7 @@ $\max\ x_1+x_2$ \\
 \indent	$\qquad 2x_1 + 5x_2 \leq 10\ (2)$ \\
 \indent $\qquad\ x_1, x_2 \in \N$
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
 \setlength{\unitlength}{1.0cm}
 \begin{picture}(6,5)(0,0)
@@ -771,7 +771,7 @@ L'adaptation de cet algorithme donne un algorithme de $2$-approximation pour le
 \titre{VC}.
 \end{corollaire}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Det\_Rounding\_SC}
 \begin{algorithmic}[1]
 \STATE Résoudre le \textbf{LP} pour \textbf{\titre{SC}}
@@ -843,12 +843,28 @@ obtenue via la résolution du problème relaxé ($Z^*_{LP}$).
 \begin{exemple}[Voir feuilles des résultats obtenus avec CPLEX]$ $\\
 \textbf{\titre{SC}} : $\alpha = \frac{9}{9} = 1$ \\
 \textbf{\titre{VC}} : $APP = 5$, $Z^*_{LP} = 2.5 \Rightarrow \alpha = 2$. \\
-\begin{multicols}{2}
-\includegraphics[scale=1]{vcSol.pdf}
-$ $\\$ $\\$ $\\$ $\\
-$OPT = 3$\\
-$5 \leq 2*3=6$
-\end{multicols}
+\begin{figure}[H]
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\includegraphics[scale=1]{vcSol.pdf}
+	\end{minipage}
+	\begin{minipage}{0.5\linewidth}
+		\centering
+		\begin{flalign*}
+		OPT &= 3\\
+		5 \leq 2*3&=6
+		\end{flalign*}
+	\end{minipage}
+\end{figure}
+%\begin{multicols}{2}
+%\begin{figure}[H]
+%	\includegraphics[scale=1]{vcSol.pdf}
+%\end{figure}
+%\begin{flalign*}
+%OPT &= 3\\
+%5 \leq 2*3&=6
+%\end{flalign*}
+%\end{multicols}
 \end{exemple}
 
 \begin{corollaire}
@@ -924,7 +940,7 @@ $x^*$ et $y^*$ sont des solutions optimales pour respectivement le
 $$ \sum_{i=1}^n y^*_i = \sum_{j=1}^m x^*_j.w_j$$
 \end{exemple}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Dual\_Rounding\_SC}
 \begin{algorithmic}[1]
 \STATE Résoudre le \textbf{dual} pour \textbf{\titre{SC}}
@@ -1023,7 +1039,7 @@ nécessitent de résoudre un \textbf{\titre{LP}}.\\
 \indent $\Rightarrow$ On va utiliser la preuve du lemme de la section 2.2
 \textit{(dual rounding)} pour en tirer un algorithme.
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Primal\_Dual\_SC}
 \begin{algorithmic}[1]
 \STATE $\forall i,\ y_i \leftarrow 0$
@@ -1104,7 +1120,7 @@ L'algorithme Primal\_Dual\_SC est un algorithme de $f$-approximation.
 
 \subsection{Algorithme d'approximation glouton}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Greedy\_SC}
 \begin{algorithmic}[1]
 \STATE $i\leftarrow \{\}$
@@ -1211,7 +1227,7 @@ APP & = & \sum_{j\in I}(w_j) \leq \sum_{k=1}^l \frac{(n_k -n_{k+1})}{n_k}OPT\\
 	& \leq & OPT \sum_{k=1}^{l} \left(\frac{1}{n_k} + \frac{1}{(n_k-1)} +\ldots +
           \frac{1}{(n_{k+1}+1)}\right)\\
 	& = & OPT \sum_{i=1}^n \frac{1}{i} \\
-	& = & OPT.H_l
+	& = & OPT.H_n
 \end{eqnarray}$$ $$\Rightarrow \frac{APP}{OPT} \leq H_n$$
 \begin{exemple}($n_k=6$ et $n_{k+1}=2$) \\
 $\frac{n_k - n_{k+1}}{n_k}=\frac{6-2} 6 \leq \frac 1 6 +\frac 1 6 +\frac 1 6 +
@@ -1375,7 +1391,7 @@ release(release date) :\\ $A = 0$, $B = 2$, $C = 1$.
 
 Quel ordonnancement est optimal ? ($ABC$, $ACB$, $BAC$, $BCA$, $CAB$ ou $CBA$ ?)
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.2]{ordo.pdf}
     \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$,
@@ -1470,7 +1486,7 @@ la plus proche ou en anglais \textit{``Earliest Due Date (\textbf{EDD})''}
 $\rightarrow$ on commence par celle la plus en retard dans le cas où il y a des
 deadlines négatives.
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{EDD\_SSM}
 \begin{algorithmic}[1]
 \STATE $t\leftarrow 0$
@@ -1509,7 +1525,7 @@ Soit un ordonnancement optimal pour toutes les tâches ($n$ tâches), voyons le
 simplement comme un ordonnancement pour $S$.
 
 \begin{exemple} (exemple précédent)
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.2]{ordo.pdf}
     \caption{Ordonnancement optimal \textit{(Job $1 = A$, Job $2 = B$,
@@ -1518,7 +1534,7 @@ simplement comme un ordonnancement pour $S$.
 \end{figure}
 
 Si on prend $S = \{A,C\}$ :
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.2]{ordoPart.pdf}
     \caption{Ordonnancement optimal concentré sur $S$ \textit{(Job $1 = A$,
@@ -1556,7 +1572,7 @@ plus grand retard, on a donc : $$L_{MAX} = c_j - d_j\qquad\qquad
 plus tôt tel que la machine est utilisée sans interruption pour toute la
 période $[t,c_j[$, c'est-à-dire la situation suivante :
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.25]{ssm.pdf}
     \caption{Exemple général}
@@ -1626,7 +1642,7 @@ mathématique, c'est-à-dire qu'elle réunit les 3 propriétés :
 
 \begin{exemple}$ $\\
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[width=0.6\textwidth]{inst_kcentre.pdf}
     \caption{Exemple de solution optimale d'une instance avec $k=3$}
@@ -1646,7 +1662,7 @@ par sélectionner un point au hasard comme centre puis on va itérer en prenant
 nous introduisons une notation : soit $S$ l'ensembles des centres, on note
 $d(i,S) = \min_{j\in S}(d_{ij})$, on a donc : $$rayon = \max_{i\in V} d(i,S)$$
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Greedy\_k\_center}
 \begin{algorithmic}[1]
 \STATE Choisir $i\in V$ au hasard.
@@ -1754,7 +1770,7 @@ $S$ soit adjacent à un sommet de $S$ ?
 
 \begin{exemple}$ $\\
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{inst_ds.pdf}
     \caption{Exemple d'instance du \textbf{\titre{DS}}}
@@ -1823,7 +1839,7 @@ machines.
 \subsubsection{Approche par la recherche locale}
 
 \begin{exemple}[$m=5$ et $n=10$]$ $\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{spm1.pdf}
     \caption{Exemple de solution d'une instance du \textbf{\titre{SPM}}}
@@ -1835,7 +1851,7 @@ fait de prendre la tâche qui se finit le plus tard pour la mettre sur la machin
 simplifier en déplaçant la tâche vers une machine permettant de diminuer $C_{MAX}$. Imaginons que cette tâche est la tâche $l$, on va la
 déplacer vers une machine qui se termine avant $c_l-p_l$. Appliquons l'algorithme (une seule itération) :
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{spm2.pdf}
     \caption{Exemple de solution d'une instance du \textbf{\titre{SPM}}}
@@ -1865,7 +1881,7 @@ $\hookrightarrow$ Intuitivement : l'algorithme est polynomial car le nombre d'it
 \'A chaque itération, soit $C_{max}$ \textbf{diminue strictement}, soit il
 \textbf{reste égal}, i.e., il y avait au moins une autre machine qui se terminait en
 $C_{max}$, il y en a maintenant une de moins.
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.42]{spm3.pdf}
     \caption{Exemple où 2 machines atteignent $c_{MAX}$}
@@ -1879,7 +1895,7 @@ d'étapes.\\
 Soit une solution produite par \textbf{LocalSearch\_SPM}, soit $l$ la tâche se terminant en dernière, càd que $c_l = c_{MAX}$. On est
 donc dans un cas comme suit (l'algorithme est terminé) :
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.45]{spm4.pdf}
     \caption{Exemple de solution donnée par l'algorithme}
@@ -1914,7 +1930,7 @@ $p_1 = 2$, $p_2 = 3$ et $p_3=4$
 
 Si on les place selon l'ordre dans lequel les tâches sont données \textit{(``ListScheduling'')}, on obtient :
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{spm5.pdf}
     \caption{Résultat du ListScheduling}
@@ -1924,7 +1940,7 @@ Si on les place selon l'ordre dans lequel les tâches sont données \textit{(``L
 On remarque rapidement que cela dépend de l'ordre dans lequel on donne les tâches.  \\ Par exemple, l'ordre $3$, $1$, $2$ donne la solution
 optimale :
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{spm6.pdf}
     \caption{Résultat du ListScheduling avec l'ordre $3$, $1$, $2$}
@@ -1933,7 +1949,7 @@ optimale :
 
 \end{exemple}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{ListScheduling}
 \begin{algorithmic}[1]
 \STATE $todo$ $\leftarrow$ liste des tâches (liste = séquence ordonnée)
@@ -1953,7 +1969,7 @@ problème est que cet algorithme a une complexité factorielle (si liste de $n$ 
 \begin{proof}$ $\\
 Soit une solution donnée par l'algorithme \textbf{ListScheduling}, notons $l$ la tâche qui termine ce scheduling, càd $$c_l = c_{MAX}$$
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.45]{spm4.pdf}
     \caption{Exemple de solution donné par l'algorithme}
@@ -1992,7 +2008,7 @@ Cette approche s'appelle \textbf{LPT} \textit{(Longest Processing Time rule)}, l
 
 \begin{exemple} Appliquons l'algorithme \textbf{LPT} sur l'exemple précédent.\\
 $\Rightarrow p_1 = 4$, $p_2 = 3$, $p_3 = 2$ (on a retrié)
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{spm6.pdf}
     \caption{Solution donnée par l'algorithme}
@@ -2027,7 +2043,7 @@ On différencie deux cas :
 	 $\rightarrow l$ est maintenant la tâche la plus petite. \\
 	 \textit{(ceci est vrai car $n>m$)}
 	 \begin{exemple}$ $
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{spm8.pdf}
     \caption{Situation considérée}
@@ -2040,7 +2056,7 @@ On différencie deux cas :
 \begin{enumerate}
 \item[a)] si $p_n \leq \frac{C^*_{max}}{3}$
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.45]{spm7.pdf}
     \caption{Situation considérée}
@@ -2079,7 +2095,7 @@ complet non dirigé et pondéré avec les coûts/distances.
 \end{rem}
 
 \begin{exemple}$ $\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.65]{TSPex1.pdf}
     \caption{Exemple d'instance de \textbf{\titre{TSP}} sour forme de graphe pondéré}
@@ -2105,14 +2121,14 @@ rapprochement entre les deux. \\
 \end{pblm}
 
 \begin{exemple} Existe-t-il un cycle hamiltonien dans un cube ? \\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{cube.pdf}
     \caption{Cube}
     \end{center}
 \end{figure}
 $\Longrightarrow$ oui, voir figure~\ref{chcube}.
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.3]{cubehc.pdf}
     \caption{Chemin hamiltonien dans un cube}
@@ -2172,7 +2188,7 @@ On note $S$ la permutation finale et $S_i$ la permutation partielle contenant qu
 Nous allons construire la solution $S$ en ajoutant à chaque itération la ville la plus proche de l'ensemble des villes déja construite.\\
 Voici cet algorithme, il est polynomial.
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{NearestAddition}
 \begin{algorithmic}[1]
 \STATE $i,j \leftarrow arg\min_{i,j\in S} C_{ij}$
@@ -2187,7 +2203,7 @@ Voici cet algorithme, il est polynomial.
 \end{algorithm}
 
 \begin{exemple}Les villes de Belgique\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{belgique.pdf}$ $\\$ $\\
     \begin{tabular}{r|c|c|c|c|c|c|}
@@ -2217,7 +2233,7 @@ On itère et on trouve :
 La valeur de la solution est : \textbf{867}. \\
 \textit{(La valeur optimale est de \textbf{757}, en prenant $S^* = [Anvers,Bruxelles,Liege,Arlon,Charleroi,Mons,Ostende]$)}
 \end{exemple}
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{belgiqueNA.pdf}
     \includegraphics[scale=0.5]{belgiqueOPT.pdf}
@@ -2231,7 +2247,7 @@ E$ tel que $\forall i,j \in V$, il existe un chemin n'utilisant que des arêtes 
 l'algorithme de \textbf{Prim} est un algorithme exact polynomial permettant de le résoudre.
 
 \begin{exemple}$ $
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{spanningtree.pdf}
     \caption{Graphe et arbre couvrant}
@@ -2248,7 +2264,7 @@ l'algorithme de \textbf{Prim} est un algorithme exact polynomial permettant de l
 \end{itemize}
 \end{pblm}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Prim (pour \titre{MST})}
 \begin{algorithmic}[1]
 \STATE $S\leftarrow\{v\}$ où $v$ est un noeud arbitraire.
@@ -2274,7 +2290,7 @@ soit exactement les mêmes que \textbf{NearestAddition}.
 Pour toute instance du \textbf{\titre{TSP}} métrique, $OPT \geq \titre{\mathbf{MST}}$.
 \begin{proof}
 Soit $n\geq 2$, une instance de TSP métrique et son tour optimal, avec $w = OPT - 1 \text{arête}$ :
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.6]{optTSP.eps}
     \caption{Instance \textbf{\titre{TSP}} métrique et son tour optimal}
@@ -2336,7 +2352,7 @@ On peut également imaginer une autre approche avec les \textbf{multigraphes}, c
 arêtes (ici $2$) entre $2$ sommets.
 
 \begin{exemple}$ $\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.45]{multig.pdf}
     \caption{Exemple de multigraphe}
@@ -2356,7 +2372,7 @@ Essayons de trouver un tour sur ce graphe (en rouge) :
 
 Revenons sur la théorie des \textit{cycles Eulériens}, via le problème de \textbf{Konïgsberg}.
 \begin{exemple}$ $ \\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.4]{konigsberg.pdf}$\qquad\qquad$
     \includegraphics[scale=0.5]{konig.pdf}
@@ -2395,7 +2411,7 @@ L'algorithme \textbf{DoubleTree} est un algorithme de $2$-approximation pour \te
 \cqfd
 \end{thm}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Double Tree}
 \begin{algorithmic}[1]
 \STATE $MST\leftarrow PRIM(G)$
@@ -2413,7 +2429,7 @@ Liege)\} $ \\
 On obtient donc l'arbre couvrant avec les arêtes données par $F$. $\Rightarrow$ 3 raccourcis apparaissent :
 $$Arlon-Mons\qquad Mons-Ostende\qquad Ostende-Anvers$$
 On obtient le tour $Anvers-Bruxelles-Charleroi-Liege-Arlon-Mons-Ostende = 801km$.
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.28]{belgiqueDT.pdf}
     \includegraphics[scale=0.5]{belgiqueOPT.pdf}
@@ -2458,7 +2474,7 @@ $7$ & $1$ \\
 \item $4$ sommets de degrés impairs et la somme de leur degré $\rightarrow 1+3+1+1 = 6$, c'est pair.
 \item $O = {2,3,4,7}$ et $|O| = 2*k$ (par 5)) pour un entier $k$ non négatif (ici $k=2$).
 \end{itemize}
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{degre.pdf}
     \caption{Graphe G}
@@ -2482,7 +2498,7 @@ $\Longrightarrow$ le problème \textbf{MIN Perfect Matching} consiste à trouver
 $\rightsquigarrow$ Il existe un algorithme polynomial pour résoudre ce problème, l'algorithme d'\textbf{Edmonds} en $O(n^4)$.\\
 \textit{(voire $O(n^3)$ avec des SDD particulières)}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{Christophides (informel)}
 \begin{algorithmic}[1]
 \STATE $MST\leftarrow PRIM(G)$
@@ -2499,7 +2515,7 @@ l'algorithme a ajouté exactement une arête à chaque sommet de degré impair, 
 \end{rem}
 
 \begin{exemple} Appliquons \textbf{Christophides} sur l'exemple de la Belgique. \\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.28]{belgiqueCHRIS.pdf}
     \includegraphics[scale=0.5]{belgiqueOPT.pdf}
@@ -2522,7 +2538,7 @@ On sait que $cout(EG) = cout(MST) + cout(PM)$ et que $cout(MST)\leq OPT$, on doi
 villes, il suffit de prendre des shortcuts sur ce tour optimal pour obtenir un tel tour. Et via les arguments déjà cités (inégalité
 triangulaire), le tour ainsi créé est $\leq OPT$.
 \item[b)]$ $
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{pmO.pdf}
     \caption{Exemple de tour sur $6$ villes $\in O$}
@@ -2541,7 +2557,7 @@ petit) est tel que $PM \leq \frac{OPT}{2}$.
 Ce facteur d'approximation est serré, nous allons le montrer sur l'exemple suivant.
 
 \begin{exemple}$ $\\
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{factserre.pdf}
     \caption{Exemple serré pour le facteur d'approximation}
@@ -2624,7 +2640,7 @@ Pourquoi ne pas essayer un algorithme glouton sur ce problème ? L'idée est de 
 cet ordre dans le sac. Nous allons envisager plusieurs ordres et montrer qu'à chaque ordre il existe une instance où on peut faire aussi
 mauvais que possible. \\
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{GloutonKPGeneral}
 \begin{algorithmic}[1]
 \STATE Trier les objets selon une certaine règle.
@@ -2653,7 +2669,7 @@ faire grandir tant que l'on veut.
 l'objet $i$ dans le sac ?".
 \end{itemize}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.5]{arbredec1.pdf}
     \caption{Arbre de décision type}
@@ -2674,7 +2690,7 @@ on choisit celle que l'on veut.
 \end{itemize}
 \end{rems}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.4]{arbredec2.pdf}
     \caption{Arbre de décision relatif à l'exemple}
@@ -2829,7 +2845,7 @@ Nous allons nous assurer que dans une liste, aucune paire n'en domine une autre.
 $(t,w)$ qui domine la paire ($\sum_{i\in S}(s_i)$,$\sum_{i\in S}(v_i)$).
 \end{enumerate}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{DynProg\_KP}
 \begin{algorithmic}[1]
 \STATE $A(1)\leftarrow \{(0,0),(s_1,v_1)\}$
@@ -2877,7 +2893,7 @@ Si pour un \textbf{PTAS} chaque algorithme $A_\epsilon$ a un temps d'exécution 
 de schéma d'approximation complet (\textbf{FPAS}).
 \end{de}
 
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{FPAS\_KP}
 \begin{algorithmic}[1]
 \REQUIRE $\epsilon > 0$
@@ -2978,7 +2994,7 @@ $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exoChap4}.\end{
 
 \begin{itemize}
 \item[]
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{MonAlgorithme}
 \begin{algorithmic}[1]
 \STATE sommetsPris $\rightarrow 0$
@@ -2988,7 +3004,7 @@ $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exoChap4}.\end{
 \end{algorithmic}
 \end{algorithm}
 \item[]
-\begin{algorithm}[h!]
+\begin{algorithm}[H]
 \caption{AlgorithmeMélot}
 \begin{algorithmic}[1]
 \STATE Trouver un sommet $v$ de degré maximum
@@ -3000,7 +3016,7 @@ $\hookrightarrow$ \begin{large}Voir exercices dans l'annexe~\ref{exoChap4}.\end{
 
 \subsubsection*{Essayer l'algo sur l'exemple et trouver un facteur d'approx}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[width=\textwidth]{exo_1_5.pdf}
     \caption{Exemple pour le Vertex Cover}
@@ -3043,7 +3059,7 @@ l'ordre de $\log{k}$.
 \begin{itemize}
 \item Instance de $VC$ : $G=(V,F) \rightarrow F$ qui doit être couvert.
 
-\begin{figure}[h!]
+\begin{figure}[H]
 	\begin{center}
     \includegraphics[width=0.15\textwidth]{annexBEx.pdf}
     \caption{$OPT = C = \{1,3,4\}$}
@@ -3095,7 +3111,7 @@ $\min \sum_{j=1}^m{w_j.x_j}$ \\
 
 \subsubsection*{Formuler l'\titre{IP} de l'exemple ci-dessous}
 
-\begin{figure}[h!]
+\begin{figure}[H]
     \begin{center}
     \includegraphics[scale=0.4]{ens_1.pdf}
     \caption{Exemple d'instance de \titre{SC}}
